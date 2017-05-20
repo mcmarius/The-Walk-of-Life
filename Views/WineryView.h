@@ -1,0 +1,6 @@
+#ifndef THE_WALK_OF_LIFE_WINERYVIEW_H
+#define THE_WALK_OF_LIFE_WINERYVIEW_H
+
+#include <GL/glew.h>
+
+#endif //THE_WALK_OF_LIFE_WINERYVIEW_H
