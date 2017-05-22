@@ -1,7 +1,3 @@
-//
-// Created by marius on 20/05/2017.
-//
-
 #ifndef THE_WALK_OF_LIFE_PLAYER_H
 #define THE_WALK_OF_LIFE_PLAYER_H
 

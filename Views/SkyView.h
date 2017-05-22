@@ -1,0 +1,6 @@
+#ifndef THE_WALK_OF_LIFE_SKYVIEW_H
+#define THE_WALK_OF_LIFE_SKYVIEW_H
+
+#include <GL/glew.h>
+
+#endif //THE_WALK_OF_LIFE_SKYVIEW_H
