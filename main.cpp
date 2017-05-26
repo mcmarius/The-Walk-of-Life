@@ -139,6 +139,9 @@ void draw() {
         y = 0.5;
     }
 
+
+
+
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
