@@ -1,18 +1,22 @@
+#include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <cmath>
 
 #include "Models/Player.h"
 #include "Views/GroundView.h"
-//#include "Views/HomeView.h"
+#include "Views/HomeView.h"
 //#include "Views/MiscView.h"
 //#include "Views/ObstacleView.h"
 #include "Views/PlayerView.h"
-//#include "Views/SkyView.h"
-//#include "Views/WallView.h"
+#include "Views/HomeView.h"
+#include "Views/SkyView.h"
+#include "Views/WallView.h"
 //#include "Views/WineryView.h"
 
 GLint winWidth = 1280, winHeight = 720;
+
+GLfloat ambient [ ] = {0, 0, 0, 1.0};
 double angle, yAngle;
 double lx, ly, lz = -1;
 double x, y = 1, z;
@@ -28,6 +32,10 @@ void draw();
 
 void initialise() {
     // load all textures
+    loadGrassTexture();
+    loadTextureOfHouse();
+    loadSkyTexture();
+
 }
 
 void reshape(int w, int h) {
@@ -134,9 +142,15 @@ void draw() {
     gluLookAt(x, y, z,
               x + lx, y + ly, z + lz,
               0.0, 1.0, 0.0);
-    
+
+
     drawGround();
+
+    drawAHome();
+    drawFence();
+
     drawPlayer();
+
 
     glutPostRedisplay();
     glutSwapBuffers();
