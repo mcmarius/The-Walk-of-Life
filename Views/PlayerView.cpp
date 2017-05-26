@@ -34,10 +34,7 @@ void drawPlayer() {
     double zero = 0, coord = 0.2;
     glPushMatrix();
     glTranslated(x +lx, std::fmax(y - 0.1, 0.5) + 0.05, z + lz);
-//    glTranslated(-coord, 0, coord);
     glRotated(angle, 0, 1, 0);
-//    glTranslated(coord/2, 0, -coord/2);
-//    glTranslated(-lx - 0.1, 0, -lz + 0.2);
     glColor3d(1, 1, 1);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, faceTexture);
@@ -61,7 +58,6 @@ void drawPlayer() {
     glVertex3d(coord, coord, zero);
 //    glTexCoord2d(1, 0);
     glEnd();
-//    glColor3d(0., 0.75, 0.75);
 //    glBindTexture(GL_TEXTURE_2D, leftSideTexture);
     glBegin(GL_QUADS);      // the left ear
     glVertex3d(zero, zero, zero);//glTexCoord2d(1, 0);
@@ -69,30 +65,24 @@ void drawPlayer() {
     glVertex3d(zero, coord, coord);//glTexCoord2d(0, 1);
     glVertex3d(zero, coord, zero);//glTexCoord2d(0, 0);
     glEnd();
-//    glDisable(GL_TEXTURE_2D);
-//    glColor3d(0., 0., 1);
     glBegin(GL_QUADS);      // the back
         glVertex3d(zero, zero, coord);
         glVertex3d(zero, coord, coord);
         glVertex3d(coord, coord, coord);
         glVertex3d(coord, zero, coord);
     glEnd();
-//    glColor3d(0., 0.75, 1);
-//    glColor3d(0., 1, 0.75);
     glBegin(GL_QUADS);      // barbia
         glVertex3d(zero, zero, zero);
         glVertex3d(zero, zero, coord);
         glVertex3d(coord, zero, coord);
         glVertex3d(coord, zero, zero);
     glEnd();
-//    glColor3d(0., 1, zero);
     glBegin(GL_QUADS);      // chelia
         glVertex3d(zero, coord, zero);
         glVertex3d(zero, coord, coord);
         glVertex3d(coord, coord, coord);
         glVertex3d(coord, coord, zero);
     glEnd();
-    //glutSolidCube(0.3);
     glPopMatrix();
 
     glDisable(GL_TEXTURE_2D);

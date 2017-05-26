@@ -6,6 +6,7 @@
 #include <GL/freeglut.h>
 #include <SOIL.h>
 #include <string>
+
 void drawPlayer();
 
 #endif //THE_WALK_OF_LIFE_PLAYERVIEW_H
