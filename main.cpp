@@ -37,7 +37,7 @@ void initialise() {
     loadGrassTexture();
     loadTextureOfHouse();
     loadSkyTexture();
-    loadPlayerTexture("Textures/player_texture.png", faceTexture);
+  //  loadPlayerTexture("Textures/player_texture.png", faceTexture);
 
 }
 
@@ -151,7 +151,7 @@ void draw() {
     drawGround();
 
     drawAHome();
-    drawFence();
+   // drawFence();
 
     drawPlayer();
 

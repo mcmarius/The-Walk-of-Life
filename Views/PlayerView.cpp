@@ -33,7 +33,7 @@ void drawPlayer() {
     }*/
     double zero = 0, coord = 0.2;
     glPushMatrix();
-    glTranslated(x + lx, std::fmax(y - 0.1, 0.5), z + lz);
+    glTranslated(x + lx, fmax(y - 0.1, 0.5), z + lz);
     glRotated(angle, 0, 1, 0);
     glColor3d(0.5, 0.5, 1);
 //    glEnable(GL_TEXTURE_2D);
