@@ -9,17 +9,19 @@
 //#include "Views/MiscView.h"
 //#include "Views/ObstacleView.h"
 #include "Views/PlayerView.h"
-#include "Views/HomeView.h"
 #include "Views/SkyView.h"
 #include "Views/WallView.h"
+#include "GameLogic.h"
 //#include "Views/WineryView.h"
 
 GLint winWidth = 1280, winHeight = 720;
 
+extern GLuint faceTexture;
+
 GLfloat ambient [ ] = {0, 0, 0, 1.0};
 double angle, yAngle;
 double lx, ly, lz = -1;
-double x, y = 1, z;
+double x, y = 0.5, z;
 
 const double PI = 3.1415926535, halfPI = PI / 2.;//, doublePI = 2 * PI;
 
@@ -35,6 +37,7 @@ void initialise() {
     loadGrassTexture();
     loadTextureOfHouse();
     loadSkyTexture();
+  //  loadPlayerTexture("Textures/player_texture.png", faceTexture);
 
 }
 
@@ -85,8 +88,8 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
             }
             break;
         case ' ' :
-            if(y < 1.1)     // prevent multiple jumps
-                y += 25;
+            if(y < 0.51)     // prevent multiple jumps
+                y += 0.5;
             break;
         case '0' :
             glDisable(GL_LIGHTING);
@@ -104,50 +107,54 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
 void processSpecialKeys(int key, int /*xx*/, int /*yy*/) {
 
     double fraction = 0.1;
-
-    switch(key) {
-        case GLUT_KEY_LEFT :
-            x -= sin(angle + halfPI) * fraction;
-            z += cos(angle + halfPI) * fraction;
-            break;
-        case GLUT_KEY_RIGHT :
-            x += sin(angle + halfPI) * fraction;
-            z -= cos(angle + halfPI) * fraction;
-            break;
-        case GLUT_KEY_UP :
-            x += lx * fraction;
-            z += lz * fraction;
-            break;
-        case GLUT_KEY_DOWN :
-            x -= lx * fraction;
-            z -= lz * fraction;
-            break;
-        default:
-            break;
+    if(!anyCollisions(x + lx, z + lz)) {
+        switch(key) {
+            case GLUT_KEY_LEFT :
+                x -= sin(angle + halfPI) * fraction;
+                z += cos(angle + halfPI) * fraction;
+                break;
+            case GLUT_KEY_RIGHT :
+                x += sin(angle + halfPI) * fraction;
+                z -= cos(angle + halfPI) * fraction;
+                break;
+            case GLUT_KEY_UP :
+                x += lx * fraction;
+                z += lz * fraction;
+                break;
+            case GLUT_KEY_DOWN :
+                x -= lx * fraction;
+                z -= lz * fraction;
+                break;
+            default:
+                break;
+        }
     }
 }
 
 void draw() {
-    if(y > 1.1 ) {
-        y -= 1;
+    if(y > 0.5 ) {
+        y -= 2e-2;
     }
-    else if(y <= 1) {
-        y = 1;
+    else if(y <= 0.5) {
+        y = 0.5;
     }
+
+
+
 
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    gluLookAt(x, y, z,
-              x + lx, y + ly, z + lz,
-              0.0, 1.0, 0.0);
+    gluLookAt(x, y + 0.25, z,
+              x + lx, y + ly + 0.25, z + lz,
+              0.0, 0.75, 0.0);
 
 
     drawGround();
 
     drawAHome();
-    drawFence();
+   // drawFence();
 
     drawPlayer();
 
