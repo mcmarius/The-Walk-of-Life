@@ -150,6 +150,7 @@ void draw() {
               0.0, 0.75, 0.0);
 
 
+    skybox();
     drawGround();
 
     drawAHome();
