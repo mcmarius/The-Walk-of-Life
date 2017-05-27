@@ -7,7 +7,7 @@ GLuint _skyTexture;
 
 void loadSkyTexture(void) {
     GLsizei width2 = 0, height2 = 0;
-    unsigned char *image2 = SOIL_load_image("../Textures/night_sky.png", &width2, &height2, 0, SOIL_LOAD_RGB);
+    unsigned char *image2 = SOIL_load_image("Textures/night_sky.png", &width2, &height2, 0, SOIL_LOAD_RGB);
     glGenTextures(1, &_skyTexture);
     glBindTexture(GL_TEXTURE_2D, _skyTexture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width2, height2, 0, GL_RGB, GL_UNSIGNED_BYTE, image2);

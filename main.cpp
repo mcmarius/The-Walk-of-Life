@@ -13,6 +13,7 @@
 #include "GameLogic.h"
 //#include "Views/WineryView.h"
 #include "Views/WeatherView.h"
+#include "Views/CollisionBoxView.h"
 
 GLint winWidth = 1280, winHeight = 720;
 
@@ -24,6 +25,10 @@ double lx, ly, lz = -1;
 double x, y = 0.5, z;
 
 const double PI = 3.1415926535, halfPI = PI / 2.;//, doublePI = 2 * PI;
+
+std::list<struct Polygon> polygonList(0);
+
+bool initialisedCollisions;
 
 void initialise();
 void reshape(int width, int height);
@@ -58,16 +63,32 @@ void reshape(int w, int h) {
 }
 
 void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
+    double newX;
+    double newZ;
     switch(key) {
         case 'd' :
             angle += 0.05;
-            lx = sin(angle);
-            lz = -cos(angle);
+            newX = sin(angle);
+            newZ = -cos(angle);
+            if(!anyCollisions(x + newX, z + newZ)) {
+                lx = newX;
+                lz = newZ;
+            }
+            else {
+                angle -= 0.05;
+            }
             break;
         case 'a' :
             angle -= 0.05;
-            lx = sin(angle);
-            lz = -cos(angle);
+            newX = sin(angle);
+            newZ = -cos(angle);
+            if(!anyCollisions(x + newX, z + newZ)) {
+                lx = newX;
+                lz = newZ;
+            }
+            else {
+                angle += 0.05;
+            }
             break;
         case 'w' :
             if(yAngle >= halfPI) {
@@ -99,6 +120,9 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
         case '1' :
             glEnable(GL_LIGHTING);
             break;
+        case 'c' :
+            printf("%f, %f\n", x + lx, z + lz);
+            break;
         default:
             break;
     }
@@ -109,27 +133,38 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
 void processSpecialKeys(int key, int /*xx*/, int /*yy*/) {
 
     double fraction = 0.1;
-    if(!anyCollisions(x + lx, z + lz)) {
-        switch(key) {
-            case GLUT_KEY_LEFT :
-                x -= sin(angle + halfPI) * fraction;
-                z += cos(angle + halfPI) * fraction;
-                break;
-            case GLUT_KEY_RIGHT :
-                x += sin(angle + halfPI) * fraction;
-                z -= cos(angle + halfPI) * fraction;
-                break;
-            case GLUT_KEY_UP :
-                x += lx * fraction;
-                z += lz * fraction;
-                break;
-            case GLUT_KEY_DOWN :
-                x -= lx * fraction;
-                z -= lz * fraction;
-                break;
-            default:
-                break;
-        }
+    double newX = sin(angle + halfPI) * fraction;
+    double newZ = cos(angle + halfPI) * fraction;
+    double newX2 = lx * fraction;
+    double newZ2 = lz * fraction;
+
+    switch(key) {
+        case GLUT_KEY_LEFT :
+            if(!anyCollisions(x + lx - newX, z + lz + newZ)) {
+                x -= newX;
+                z += newZ;
+            }
+            break;
+        case GLUT_KEY_RIGHT :
+            if(!anyCollisions(x + lx + newX, z + lz - newZ)) {
+                x += newX;
+                z -= newZ;
+            }
+            break;
+        case GLUT_KEY_UP :
+            if(!anyCollisions(x + lx + newX2, z + lz + newZ2)) {
+                x += newX2;
+                z += newZ2;
+            }
+            break;
+        case GLUT_KEY_DOWN :
+            if(!anyCollisions(x + lx - newX2, z + lz - newZ2)) {
+                x -= newX2;
+                z -= newZ2;
+            }
+            break;
+        default:
+            break;
     }
 }
 
