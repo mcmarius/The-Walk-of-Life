@@ -10,40 +10,16 @@ GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
 GLfloat model_ambient[] = { 0.5, 0.5, 0.5, 1.0 };
 
 
+void loadStickMaterial();
+
 void drawAStick(void)
 {
-   // glClearColor(0.0, 0.0, 0.0, 0.0);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, model_ambient);
-
-
-
-    startList = glGenLists(2);
-    qobj = gluNewQuadric();
 
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-   // glEnable(GL_DEPTH_TEST);
 
-
-    gluQuadricDrawStyle(qobj, GLU_FILL); /* flat shaded */
-    gluQuadricNormals(qobj, GLU_FLAT);
-    glNewList(startList, GL_COMPILE);
-    gluCylinder(qobj, 0.1, 0.1, 1.0, 15, 5);
-    glEndList();
-
-
-    gluQuadricDrawStyle(qobj, GLU_FILL); /* flat shaded */
-    gluQuadricNormals(qobj, GLU_FLAT);
-    glNewList(startList+1, GL_COMPILE);
-    gluCylinder(qobj, 0.1, 0.01, 0.3, 15, 5);
-    glEndList();
-
-//    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
 
    // glColor3d(1.0,0.0,0.0);
@@ -77,21 +53,85 @@ void drawAStick(void)
 
 }
 
+void loadStickMaterial() {// glClearColor(0.0, 0.0, 0.0, 0.0);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, model_ambient);
+
+
+    startList = glGenLists(2);
+    qobj = gluNewQuadric();
+
+
+
+    // glEnable(GL_DEPTH_TEST);
+
+
+    gluQuadricDrawStyle(qobj, GLU_FILL); /* flat shaded */
+    gluQuadricNormals(qobj, GLU_FLAT);
+    glNewList(startList, GL_COMPILE);
+    gluCylinder(qobj, 0.1, 0.1, 1.0, 15, 5);
+    glEndList();
+
+
+    gluQuadricDrawStyle(qobj, GLU_FILL); /* flat shaded */
+    gluQuadricNormals(qobj, GLU_FLAT);
+    glNewList(startList+1, GL_COMPILE);
+    gluCylinder(qobj, 0.1, 0.01, 0.3, 15, 5);
+    glEndList();
+}
+
 
 void drawFence(void) {
+
+
+    glPushMatrix();
+    glTranslated(-2.0,0.0,-3.0);
+
+    for(double x = 0 ; x <= 4.6 ; x+=0.2) {
         glPushMatrix();
-        glTranslated(0.0, 0.0, 0.0);
+        glRotated(120.0,0.0,1.0,0.0);
+        glTranslated(x, 0.0, 0.0);
+        drawAStick();
+        glPopMatrix();
+    }
+
+    glPopMatrix();
+
+
+    glPushMatrix();
+
+    glTranslated(-4.1,0.0,-7.0);
+
+    for(double x = 0 ; x <= 6.2 ; x+=0.2){
+
+        glPushMatrix();
+        glRotated(30.0,0.0,1.0,0.0);
+        glTranslated(x,0.0,0.0);
         drawAStick();
         glPopMatrix();
 
+    }
+
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslated(3.5,0.0,-6.0);
+
+    for(double x = 0 ; x <= 4.6 ; x+=0.2){
+
         glPushMatrix();
-        glTranslated(0.2, 0.0, 0.0);
+        glRotated(120.0,0.0,1.0,0.0);
+        glTranslated(x,0.0,0.0);
         drawAStick();
         glPopMatrix();
+    }
 
-         glPushMatrix();
-         glTranslated(0.4, 0.0, 0.0);
-         drawAStick();
-         glPopMatrix();
+    glPopMatrix();
+
+
 
 }

@@ -12,6 +12,7 @@
 #include "Views/WallView.h"
 #include "GameLogic.h"
 //#include "Views/WineryView.h"
+#include "Views/WeatherView.h"
 
 GLint winWidth = 1280, winHeight = 720;
 
@@ -35,9 +36,11 @@ void initialise() {
     // load all textures
     loadGrassTexture();
     loadTextureOfHouse();
-    loadSkyTexture();
+   // loadSkyTexture();
+    loadStickMaterial();
   //  loadPlayerTexture("Textures/player_texture.png", faceTexture);
 
+    initWeather();
 }
 
 void reshape(int w, int h) {
@@ -154,9 +157,11 @@ void draw() {
     drawGround();
 
     drawAHome();
-   // drawFence();
+    drawFence();
 
     drawPlayer();
+    drawRain();
+   // drawSnow();
 
 
     glutPostRedisplay();
