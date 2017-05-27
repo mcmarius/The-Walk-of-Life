@@ -4,7 +4,7 @@
 #include <cmath>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
-#include <SOIL.h>
+#include <SOIL/SOIL.h>
 #include <string>
 
 void loadPlayerTexture(const std::string nume, GLuint &id);

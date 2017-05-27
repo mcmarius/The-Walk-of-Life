@@ -27,16 +27,16 @@ void loadTextureOfHouse(void)
 
 
 
-    Image* image = loadBMP("Textures/bricks.bmp");
+    Image* image = loadBMP("../Textures/bricks.bmp");
     textureBrick = loadTexture(image);
 
-    image = loadBMP("Textures/door.bmp");
+    image = loadBMP("../Textures/door.bmp");
     textureDoor = loadTexture(image);
 
-    image = loadBMP("Textures/roof.bmp");
+    image = loadBMP("../Textures/roof.bmp");
     textureRoof = loadTexture(image);
 
-    image = loadBMP("Textures/window.bmp");
+    image = loadBMP("../Textures/window.bmp");
     textureWindow = loadTexture(image);
 
     delete image;

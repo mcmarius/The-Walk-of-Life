@@ -3,7 +3,7 @@
 
 #include <GL/glew.h>
 #include <GL/freeglut.h>
-#include <GL/SOIL.h>
+#include <SOIL/SOIL.h>
 
 void skybox(void);
 void loadSkyTexture(void);

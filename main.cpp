@@ -1,4 +1,3 @@
-#include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <cmath>
