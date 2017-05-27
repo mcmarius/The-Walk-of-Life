@@ -8,5 +8,6 @@
 
 void drawAStick(void);
 void drawFence(void);
+void loadStickMaterial(void);
 
 #endif //THE_WALK_OF_LIFE_WALLVIEW_H
