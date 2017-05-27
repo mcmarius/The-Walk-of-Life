@@ -36,7 +36,7 @@ void initialise() {
     // load all textures
     loadGrassTexture();
     loadTextureOfHouse();
-   // loadSkyTexture();
+    loadSkyTexture();
     loadStickMaterial();
   //  loadPlayerTexture("Textures/player_texture.png", faceTexture);
 
