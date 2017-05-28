@@ -16,6 +16,7 @@
 #include "Views/CollisionBoxView.h"
 #include "Views/WineryView.h"
 #include "Views/ForestView.h"
+#include "Views/BottleView.h"
 
 GLint winWidth = 1280, winHeight = 720;
 
@@ -25,11 +26,14 @@ extern GLuint rightSideTexture;
 extern GLuint leftSideTexture;
 extern GLuint chestTexture;
 
+static GLint fogMode;
+
 GLfloat ambient [ ] = {0, 0, 0, 1.0};
 double angle, yAngle;
 double lx, ly, lz = -1;
 double x, y = 0.5, z;
 bool ploaie = false;
+bool fog = false;
 int window;
 int valueMenu,returnMenu;
 
@@ -88,10 +92,23 @@ void initialise() {
     loadPlayerTexture("Textures/Player/left_ear.png", leftSideTexture);
     loadPlayerTexture("Textures/Player/piept.png",chestTexture);
 
+    glEnable(GL_FOG);
+    {
+        GLfloat fogColor[4] = {0.5, 0.5, 0.5, 1.0};
 
+        fogMode = GL_EXP;
+        glFogi (GL_FOG_MODE, fogMode);
+        glFogfv (GL_FOG_COLOR, fogColor);
+        glFogf (GL_FOG_DENSITY, 0.09);
+        glHint (GL_FOG_HINT, GL_DONT_CARE);
+        glFogf (GL_FOG_START, -1000.0);
+        glFogf (GL_FOG_END, 1000.0 );
 
+    }
+    glClearColor(0.5, 0.5, 0.5, 1.0);  /* fog color */
 
     initWeather();
+    generateBottles();
 }
 
 void reshape(int w, int h) {
@@ -177,6 +194,14 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
         case 'c':
             printf("%f %f %f\n", x + lx,y + ly , z + lz);
             break;
+        case 'f':
+        {
+            fog = !fog;
+
+        }
+        break;
+
+
         default:
             break;
     }
@@ -253,8 +278,20 @@ void draw() {
     drawPlayer();
     if(ploaie)
         drawRain();
-    //drawSnow();
     drawAForest();
+    drawBottles();
+
+
+    if(fog){
+        glEnable(GL_FOG);
+        glClearColor(0.5, 0.5, 0.5, 1.0);
+    }else if(!fog){
+        glDisable(GL_FOG);
+    }
+
+
+
+
     drawWineryBar();
 
     glutPostRedisplay();

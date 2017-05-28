@@ -5,7 +5,7 @@
 #include "WeatherView.h"
 
 
-#define MAX_PARTICLES 10000
+#define MAX_PARTICLES 100000
 #define WCX		640
 #define WCY		480
 #define RAIN	0

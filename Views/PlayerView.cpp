@@ -125,6 +125,30 @@ void drawPlayer() {
     glEnd();
 
 
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+
+
     glPopMatrix();
 
     glDisable(GL_TEXTURE_2D);
