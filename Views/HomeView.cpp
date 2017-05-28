@@ -1,7 +1,15 @@
 #include "HomeView.h"
 
-GLuint textureBrick, textureDoor, textureRoof, textureWindow;
-float angleHouse = 30;
+GLuint textureBrick, textureDoor, textureRoof, textureWindow,textureFloor;
+const float angleHouse = 30;
+
+
+
+void write (const char *string)
+{
+    while (*string)
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,*string++);
+}
 
 GLuint loadTexture(Image* image) {
 
@@ -22,6 +30,8 @@ GLuint loadTexture(Image* image) {
 }
 
 
+
+
 void loadTextureOfHouse(void)
 {
 
@@ -39,6 +49,10 @@ void loadTextureOfHouse(void)
     image = loadBMP("../Textures/window.bmp");
     textureWindow = loadTexture(image);
 
+    image = loadBMP("../Textures/floor.bmp");
+    textureFloor = loadTexture(image);
+
+
     delete image;
 }
 
@@ -47,10 +61,16 @@ void drawAHome() {
 
 
 
+/*    glColor3d(1.0,1.0,1.0);
+    glRasterPos3f(1,2.0,-4.0);
+    write ("Nu e bine domnule student !");*/
+
+
+
+    glEnable(GL_TEXTURE_2D);
 
     // Front side
     glPushMatrix();
-    glEnable(GL_TEXTURE_2D);
 
     glBindTexture(GL_TEXTURE_2D, textureBrick);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -187,6 +207,28 @@ void drawAHome() {
     glEnd();
     glPopMatrix();
 
+
+    glPushMatrix();
+
+   // glRotatef(angleHouse, 0.0, 1.0, 0.0);
+
+
+    glBindTexture(GL_TEXTURE_2D, textureFloor);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glRotatef(angleHouse, 0.0, 1.0, 0.0);
+    glBegin(GL_QUADS);
+    glTexCoord3f(0.0,2.0,1); glVertex3f(5,0.1,-6.25);
+    glTexCoord3f(2.0,2.0,-1); glVertex3f(1,0.1,-6.25);
+    glTexCoord3f(2.0,0.0,-1); glVertex3f(1,0.1,-4.20);
+    glTexCoord3f(0.0,0.0,1);  glVertex3f(5,0.1,-4.20);
+
+    glEnd();
+
+
+    glPopMatrix();
+
     glDisable(GL_TEXTURE_2D);
+
 }
 

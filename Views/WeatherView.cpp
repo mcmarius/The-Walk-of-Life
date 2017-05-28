@@ -56,11 +56,11 @@ particles par_sys[MAX_PARTICLES];
 
 void initParticles(int i) {
     par_sys[i].alive = true;
-    par_sys[i].life = 1.0;
+    par_sys[i].life = 10.0;
     par_sys[i].fade = float(rand()%100)/1000.0f+0.003f;
 
     par_sys[i].xpos = (float) (rand() % 300) - 100;
-    par_sys[i].ypos = 20.0;
+    par_sys[i].ypos = 101.0;
     par_sys[i].zpos = (float) (rand() % 300) - 100;
 
 

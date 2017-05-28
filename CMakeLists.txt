@@ -16,6 +16,6 @@ include_directories(${SOIL_INCLUDE_DIR} ${GLEW_INCLUDE_DIRS}
 set(SOURCE_FILES main.cpp
         Models/Player.cpp
         Views/PlayerView.cpp Views/WallView.cpp Views/ObstacleView.cpp Views/GroundView.cpp
-        Views/MiscView.cpp Views/SkyView.cpp Views/HomeView.cpp Views/WineryView.cpp Utility/imageloader.cpp GameLogic.cpp Views/WeatherView.cpp)
+        Views/MiscView.cpp Views/SkyView.cpp Views/HomeView.cpp Views/WineryView.cpp Utility/imageloader.cpp GameLogic.cpp Views/WeatherView.cpp Views/ForestView.cpp Views/ForestView.h)
 add_executable(Proiect2 ${SOURCE_FILES})
 target_link_libraries(Proiect2 SOIL ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
