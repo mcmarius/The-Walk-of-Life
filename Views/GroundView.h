@@ -8,5 +8,6 @@
 
 void loadGrassTexture();
 void drawGround();
+void loadPathTexture();
 
 #endif //THE_WALK_OF_LIFE_GROUNDVIEW_H

@@ -3,11 +3,15 @@
 GLUquadricObj *qobj;
 GLuint startList;
 
-GLfloat mat_ambient[] = { 0.5, 0.5, 0.5, 1.0 };
-GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-GLfloat mat_shininess[] = { 50.0 };
+GLfloat mat_ambient[] = {0.19125, 0.0735, 0.0225, };
+GLfloat mat_difuse[] = {0.8038, 	0.37048, 	0.0828};
+GLfloat mat_specular[] = { 0.256777, 0.137622, 0.086014, };
+GLfloat mat_shininess[] = { 0.1 };
 GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
 GLfloat model_ambient[] = { 0.5, 0.5, 0.5, 1.0 };
+
+
+const float angleWall = 0;
 
 
 void loadStickMaterial();
@@ -18,7 +22,13 @@ void drawAStick(void)
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+ //   glEnable(GL_DEPTH_TEST);
 
+
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_difuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     //    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
 
@@ -49,16 +59,15 @@ void drawAStick(void)
 
     glDisable(GL_LIGHTING);
     glDisable(GL_LIGHT0);
+   // glDisable(GL_DEPTH_TEST);
 
 
 }
 
 void loadStickMaterial() {// glClearColor(0.0, 0.0, 0.0, 0.0);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, model_ambient);
+
+  //  glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+  //  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, model_ambient);
 
 
     startList = glGenLists(2);
@@ -66,7 +75,6 @@ void loadStickMaterial() {// glClearColor(0.0, 0.0, 0.0, 0.0);
 
 
 
-    // glEnable(GL_DEPTH_TEST);
 
 
     gluQuadricDrawStyle(qobj, GLU_FILL); /* flat shaded */
@@ -85,6 +93,9 @@ void loadStickMaterial() {// glClearColor(0.0, 0.0, 0.0, 0.0);
 
 
 void drawFence(void) {
+
+    glPushMatrix();
+    glRotatef(angleWall, 0.0, 1.0, 0.0);
 
 
     glPushMatrix();
@@ -132,6 +143,35 @@ void drawFence(void) {
 
     glPopMatrix();
 
+
+    glPushMatrix();
+    glTranslated(-2.0,0.0,-3.0);
+
+    for(double x = 0 ; x <= 1.0 ; x+=0.2){
+        glPushMatrix();
+        glRotated(30.0,0.0,1.0,0.0);
+        glTranslated(x,0.0,0.0);
+        drawAStick();
+        glPopMatrix();
+    }
+
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslated(2.5,0.0,-5.5);
+
+    for(double x = 0 ; x <= 1.0 ; x+=0.2){
+        glPushMatrix();
+        glRotated(30.0,0.0,1.0,0.0);
+        glTranslated(x,0.0,0.0);
+        drawAStick();
+        glPopMatrix();
+    }
+
+    glPopMatrix();
+
+    glPopMatrix();
 
 
 }

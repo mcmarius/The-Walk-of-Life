@@ -5,7 +5,9 @@ extern double lx, ly, lz;
 extern double angle;
 
 //bool loadedPlayerTexture = false;
-GLuint faceTexture;//, rightSideTexture, leftSideTexture;
+GLuint faceTexture, rightSideTexture, leftSideTexture;
+GLuint backSideTexture;
+GLuint chestTexture;
 
 void loadPlayerTexture(const std::string nume, GLuint &id) {
     GLsizei width = 0, height = 0;
@@ -35,41 +37,44 @@ void drawPlayer() {
     glPushMatrix();
     glTranslated(x + lx, fmax(y - 0.1, 0.5), z + lz);
     glRotated(angle, 0, 1, 0);
-    glColor3d(0.5, 0.5, 1);
-//    glEnable(GL_TEXTURE_2D);
-//    glBindTexture(GL_TEXTURE_2D, faceTexture);
+    //glColor3d(0.5, 0.5, 1);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, faceTexture);
     glBegin(GL_QUADS);      // the face
-        glVertex3d(zero, zero, zero);//  glTexCoord2d(0, 0);
-        glVertex3d(zero, coord, zero);//   glTexCoord2d(0.115, 0);
-        glVertex3d(coord, coord, zero);//    glTexCoord2d(0.115, 0.115);
-        glVertex3d(coord, zero, zero);//   glTexCoord2d(0, 0.115);
+    glTexCoord2d(0.0,0.0); glVertex3d(zero, zero, zero);//  glTexCoord2d(0, 0);
+    glTexCoord2d(0.0,1.0); glVertex3d(zero, coord, zero);//   glTexCoord2d(0.115, 0);
+    glTexCoord2d(1.0,1.0); glVertex3d(coord, coord, zero);//    glTexCoord2d(0.115, 0.115);
+    glTexCoord2d(1.0,0.0); glVertex3d(coord, zero, zero);//   glTexCoord2d(0, 0.115);
     glEnd();
 //    glDisable(GL_TEXTURE_2D);
 //    glEnable(GL_TEXTURE_2D);
 //    glBindTexture(GL_TEXTURE_2D, 0);
-//    glBindTexture(GL_TEXTURE_2D, rightSideTexture);
+    glBindTexture(GL_TEXTURE_2D, rightSideTexture);
     glBegin(GL_QUADS);      // the right ear
     glVertex3d(coord, zero, zero);
-//    glTexCoord2d(0, 0);
+    glTexCoord2d(0, 0);
     glVertex3d(coord, zero, coord);
-//    glTexCoord2d(0, 1);
+    glTexCoord2d(0, 1);
     glVertex3d(coord, coord, coord);
-//    glTexCoord2d(1, 1);
+    glTexCoord2d(1, 1);
     glVertex3d(coord, coord, zero);
-//    glTexCoord2d(1, 0);
+    glTexCoord2d(1, 0);
     glEnd();
-//    glBindTexture(GL_TEXTURE_2D, leftSideTexture);
+
+    glBindTexture(GL_TEXTURE_2D, leftSideTexture);
     glBegin(GL_QUADS);      // the left ear
-    glVertex3d(zero, zero, zero);//glTexCoord2d(1, 0);
-    glVertex3d(zero, zero, coord);//glTexCoord2d(1, 1);
-    glVertex3d(zero, coord, coord);//glTexCoord2d(0, 1);
-    glVertex3d(zero, coord, zero);//glTexCoord2d(0, 0);
+    glTexCoord2d(1, 0); glVertex3d(zero, zero, zero);//glTexCoord2d(1, 0);
+    glTexCoord2d(0, 0); glVertex3d(zero, zero, coord);//glTexCoord2d(1, 1);
+    glTexCoord2d(0, 1); glVertex3d(zero, coord, coord);//glTexCoord2d(0, 1);
+    glTexCoord2d(1, 1); glVertex3d(zero, coord, zero);//glTexCoord2d(0, 0);
     glEnd();
+
+    glBindTexture(GL_TEXTURE_2D, backSideTexture);
     glBegin(GL_QUADS);      // the back
-        glVertex3d(zero, zero, coord);
-        glVertex3d(zero, coord, coord);
-        glVertex3d(coord, coord, coord);
-        glVertex3d(coord, zero, coord);
+    glTexCoord2d(0.0,0.0);   glVertex3d(zero, zero, coord);
+    glTexCoord2d(0.0,1.0);    glVertex3d(zero, coord, coord);
+    glTexCoord2d(1.0,1.0);    glVertex3d(coord, coord, coord);
+    glTexCoord2d(1.0,0.0);    glVertex3d(coord, zero, coord);
     glEnd();
     glBegin(GL_QUADS);      // barbia
         glVertex3d(zero, zero, zero);
@@ -83,6 +88,43 @@ void drawPlayer() {
         glVertex3d(coord, coord, coord);
         glVertex3d(coord, coord, zero);
     glEnd();
+
+
+    //glColor3d(0.0,0.2,1.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.02, coord);
+    glVertex3d(coord+0.1,zero -0.02, coord);
+    glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glEnd();
+
+
+
+    glBindTexture(GL_TEXTURE_2D, chestTexture);
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2d(0.88,0.88); glVertex3d(zero-0.1, zero -0.02, zero);
+    glTexCoord2d(0.88,0.7); glVertex3d(zero-0.1, zero -0.08, zero);
+    glTexCoord2d(0.0,0.7); glVertex3d(coord+0.1,zero -0.08, zero);
+    glTexCoord2d(0.0,0.88); glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glEnd();
+
+
+
+    glBegin(GL_QUADS);
+
+     glVertex3d(zero-0.1, zero -0.02, zero+0.2);
+     glVertex3d(zero-0.1, zero -0.08, zero+0.2);
+     glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+     glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
     glPopMatrix();
 
     glDisable(GL_TEXTURE_2D);

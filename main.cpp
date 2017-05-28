@@ -11,18 +11,30 @@
 #include "Views/SkyView.h"
 #include "Views/WallView.h"
 #include "GameLogic.h"
-//#include "Views/WineryView.h"
 #include "Views/WeatherView.h"
+
 #include "Views/CollisionBoxView.h"
+#include "Views/WineryView.h"
+#include "Views/ForestView.h"
 
 GLint winWidth = 1280, winHeight = 720;
 
 extern GLuint faceTexture;
+extern GLuint backSideTexture;
+extern GLuint rightSideTexture;
+extern GLuint leftSideTexture;
+extern GLuint chestTexture;
 
 GLfloat ambient [ ] = {0, 0, 0, 1.0};
 double angle, yAngle;
 double lx, ly, lz = -1;
 double x, y = 0.5, z;
+bool ploaie = false;
+int window;
+int valueMenu,returnMenu;
+
+double alcohol_level = 1000.0;
+
 
 const double PI = 3.1415926535, halfPI = PI / 2.;//, doublePI = 2 * PI;
 
@@ -36,14 +48,48 @@ void processNormalKeys(unsigned char key, int, int);
 void processSpecialKeys(int key, int, int);
 void draw();
 
+void menu(int);
+void createMenu();
+
+
+void menu(int n){
+    if(n == 0){
+        glutDestroyWindow(window);
+        exit(0);
+    }else{ valueMenu = n ; }
+    glutPostRedisplay();
+}
+
+void createMenu(){
+    returnMenu = glutCreateMenu(menu);
+    glutAddMenuEntry("Intro" ,1);
+    glutAddMenuEntry("Demo", 2);
+    glutAddMenuEntry("Play" ,3);
+    glutAddMenuEntry("Quit" ,0);
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
 
 void initialise() {
+
+    srand(time(NULL));
+
+    initialize_trans_x_y();
+
     // load all textures
     loadGrassTexture();
+    loadPathTexture();
     loadTextureOfHouse();
     loadSkyTexture();
     loadStickMaterial();
-  //  loadPlayerTexture("Textures/player_texture.png", faceTexture);
+    loadPlayerTexture("../Textures/Player/muea.png", faceTexture);
+    loadPlayerTexture("../Textures/Player/ceafa.png", backSideTexture);
+    loadPlayerTexture("../Textures/Player/right_ear.png", rightSideTexture);
+    loadPlayerTexture("../Textures/Player/left_ear.png", leftSideTexture);
+    loadPlayerTexture("../Textures/Player/piept.png",chestTexture);
+
+
+
 
     initWeather();
 }
@@ -120,8 +166,16 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
         case '1' :
             glEnable(GL_LIGHTING);
             break;
-        case 'c' :
-            printf("%f, %f\n", x + lx, z + lz);
+        case 'p':
+            ploaie = !ploaie;
+            break;
+        case 'l':
+            if(alcohol_level <= 1200)
+                alcohol_level += 0.6;
+            break;
+
+        case 'c':
+            printf("%f %f %f\n", x + lx,y + ly , z + lz);
             break;
         default:
             break;
@@ -169,6 +223,8 @@ void processSpecialKeys(int key, int /*xx*/, int /*yy*/) {
 }
 
 void draw() {
+
+
     if(y > 0.5 ) {
         y -= 2e-2;
     }
@@ -191,13 +247,15 @@ void draw() {
     skybox();
     drawGround();
 
-    drawAHome();
     drawFence();
+    drawAHome();
 
     drawPlayer();
-    drawRain();
-   // drawSnow();
-
+    if(ploaie)
+        drawRain();
+    //drawSnow();
+    drawAForest();
+    drawWineryBar();
 
     glutPostRedisplay();
     glutSwapBuffers();
@@ -212,9 +270,11 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(50, 50);
     glutInitWindowSize(winWidth, winHeight);
-    glutCreateWindow("The Walk of Life");
+    window = glutCreateWindow("The Walk of Life");
 
     initialise();
+
+    createMenu();
 
     glutDisplayFunc(draw);
     glutReshapeFunc(reshape);
@@ -222,6 +282,7 @@ int main(int argc, char **argv) {
     glutKeyboardFunc(processNormalKeys);
     glutSpecialFunc(processSpecialKeys);
 
+   // glutFullScreen();
 
     glEnable(GL_DEPTH_TEST);    // OpenGL init
     glutMainLoop();    // enter GLUT event processing cycle
