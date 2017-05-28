@@ -6,15 +6,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wall -Wpedantic -Wextra ")
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(GLEW REQUIRED)
-
-# this file will be added to .gitignore (these paths are context-sensitive)
-set(SOIL_INCLUDE_DIR "C:/MinGW/include/GL")
-set(GLM_INCLUDE_DIR "C:/Users/marius/Documents/facultate/anul_II/sem_II/gc/lib/glm")
+find_library(SOIL REQUIRED)
 
 include_directories(${SOIL_INCLUDE_DIR} ${GLEW_INCLUDE_DIRS}
-        ${GLM_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
+        ${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
 set(SOURCE_FILES main.cpp
-        Models/Player.cpp
+        Models/Player.cpp Models/Point.cpp Models/Polygon.cpp
         Views/PlayerView.cpp Views/WallView.cpp Views/ObstacleView.cpp Views/GroundView.cpp
         Views/MiscView.cpp Views/SkyView.cpp Views/HomeView.cpp Views/WineryView.cpp Utility/imageloader.cpp GameLogic.cpp Views/WeatherView.cpp Views/ForestView.cpp Views/ForestView.h)
 add_executable(Proiect2 ${SOURCE_FILES})

@@ -82,11 +82,11 @@ void initialise() {
     loadTextureOfHouse();
     loadSkyTexture();
     loadStickMaterial();
-    loadPlayerTexture("../Textures/Player/muea.png", faceTexture);
-    loadPlayerTexture("../Textures/Player/ceafa.png", backSideTexture);
-    loadPlayerTexture("../Textures/Player/right_ear.png", rightSideTexture);
-    loadPlayerTexture("../Textures/Player/left_ear.png", leftSideTexture);
-    loadPlayerTexture("../Textures/Player/piept.png",chestTexture);
+    loadPlayerTexture("Textures/Player/muea.png", faceTexture);
+    loadPlayerTexture("Textures/Player/ceafa.png", backSideTexture);
+    loadPlayerTexture("Textures/Player/right_ear.png", rightSideTexture);
+    loadPlayerTexture("Textures/Player/left_ear.png", leftSideTexture);
+    loadPlayerTexture("Textures/Player/piept.png",chestTexture);
 
 
 

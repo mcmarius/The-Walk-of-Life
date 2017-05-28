@@ -49,7 +49,7 @@ void loadTextureOfHouse(void)
     image = loadBMP("Textures/window.bmp");
     textureWindow = loadTexture(image);
 
-    image = loadBMP("../Textures/floor.bmp");
+    image = loadBMP("Textures/floor.bmp");
     textureFloor = loadTexture(image);
 
 
