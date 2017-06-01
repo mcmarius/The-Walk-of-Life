@@ -296,16 +296,11 @@ void draw() {
         glDisable(GL_FOG);
     }
 
-
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glDisable(GL_TEXTURE_2D);
-    glEnable(GL_TEXTURE_2D);
-    glPushMatrix();
-    glTranslated(0, -2.6, 6);
-    glRotated(90, -1, 0, 0);
-    displayBezierGroundSurface();
-    glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
+    for(int i = 0; i < 2; ++i) {
+        for(int j = 0; j < 3; ++j) {
+            displayBezierGroundSurface(3 * i, 2 * j);
+        }
+    }
 
     drawWineryBar();
 

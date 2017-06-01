@@ -10,6 +10,6 @@
 
 void makeImage();
 void initBezierGroundSurface();
-void displayBezierGroundSurface();
+void displayBezierGroundSurface(GLdouble x, GLdouble z);
 
 #endif //THE_WALK_OF_LIFE_BEZIERSURFACE_H
