@@ -4,6 +4,7 @@ extern double x, y, z;
 extern double lx, ly, lz;
 extern double angle;
 
+
 //bool loadedPlayerTexture = false;
 GLuint faceTexture, rightSideTexture, leftSideTexture;
 GLuint backSideTexture;
@@ -145,6 +146,404 @@ void drawPlayer() {
 
     glEnd();
 
+
+    glPushMatrix(); //burta
+
+    glColor3d(0.8,0.0,0.0);
+
+    glTranslated(0.0,-0.03,0.0);
+    glScaled(1.0,2.5,1.0);
+
+
+    glBegin(GL_QUADS);
+
+     glVertex3d(zero-0.1, zero -0.02, zero);
+     glVertex3d(zero-0.1, zero -0.08, zero);
+     glVertex3d(coord+0.1,zero -0.08, zero);
+     glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero+0.2);
+    glVertex3d(zero-0.1, zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glPopMatrix();
+
+
+
+  /*  glPushMatrix();  //bazin
+
+    glColor3d(0.0,0.0,0.5);
+
+    glTranslated(0.0,-0.23,0.0);
+    glScaled(1.0,2,1.0);
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero+0.2);
+    glVertex3d(zero-0.1, zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glPopMatrix();*/
+
+
+
+
+    glPushMatrix();  //left_leg
+
+    glColor3d(0.0,0.6,0.0);
+
+    glTranslated(-0.05,-0.55,0.0);
+    glScaled(0.2,1.5,2);
+    glRotated(-90.0,1.0,0.0,0.0);
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero+0.2);
+    glVertex3d(zero-0.1, zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+    glColor3d(1.0,0.0,0.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1, zero -0.08, zero+0.2);
+
+    glEnd();
+
+    glColor3d(0.0,1.0,1.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1,zero -0.02, zero);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+    glVertex3d(coord+0.1, zero -0.02, zero+0.2);
+
+    glEnd();
+
+    glPopMatrix();
+
+    glPushMatrix();  //right_leg
+
+    glColor3d(0.0,0.6,0.0);
+
+    glTranslated(0.2,-0.55,0.0);
+    glScaled(0.2,1.5,2);
+    glRotated(-90.0,1.0,0.0,0.0);
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero+0.2);
+    glVertex3d(zero-0.1, zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+    glColor3d(1.0,0.0,0.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1, zero -0.08, zero+0.2);
+
+    glEnd();
+
+    glColor3d(0.0,1.0,1.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1,zero -0.02, zero);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+    glVertex3d(coord+0.1, zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+
+    glPopMatrix();
+
+
+
+    glPushMatrix();  //left_arm
+
+    glColor3d(0.0,0.6,0.0);
+
+    glTranslated(-0.17,-0.27,0.0);
+    glScaled(0.2,1.2,2);
+    glRotated(-90.0,1.0,0.0,0.0);
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero+0.2);
+    glVertex3d(zero-0.1, zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+    glColor3d(1.0,0.0,0.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1, zero -0.08, zero+0.2);
+
+    glEnd();
+
+    glColor3d(0.0,1.0,1.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1,zero -0.02, zero);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+    glVertex3d(coord+0.1, zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+
+    glPopMatrix();
+
+
+
+    glPushMatrix();  //right_arm
+
+    glColor3d(0.0,0.6,0.0);
+
+    glTranslated(0.335,-0.27,0.0);
+    glScaled(0.2,1.2,2);
+    glRotated(-90.0,1.0,0.0,0.0);
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero+0.2);
+    glVertex3d(zero-0.1, zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(zero-0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(coord+0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1,zero -0.02, zero+0.2);
+
+    glEnd();
+
+    glColor3d(1.0,0.0,0.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero);
+    glVertex3d(zero-0.1,zero -0.08, zero+0.2);
+    glVertex3d(coord+0.1, zero -0.08, zero+0.2);
+
+    glEnd();
+
+    glColor3d(0.0,1.0,1.0);
+    glBegin(GL_QUADS);
+
+    glVertex3d(coord+0.1, zero -0.02, zero);
+    glVertex3d(zero-0.1,zero -0.02, zero);
+    glVertex3d(zero-0.1,zero -0.02, zero+0.2);
+    glVertex3d(coord+0.1, zero -0.02, zero+0.2);
+
+    glEnd();
+
+
+
+
+    glPopMatrix();
 
 
 
