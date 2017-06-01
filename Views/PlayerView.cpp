@@ -9,6 +9,7 @@ extern double angle;
 GLuint faceTexture, rightSideTexture, leftSideTexture;
 GLuint backSideTexture;
 GLuint chestTexture;
+GLuint bellyTexture;
 
 void loadPlayerTexture(const std::string nume, GLuint &id) {
     GLsizei width = 0, height = 0;
@@ -149,18 +150,23 @@ void drawPlayer() {
 
     glPushMatrix(); //burta
 
-    glColor3d(0.8,0.0,0.0);
+  //  glColor3d(0.8,0.0,0.0);
 
     glTranslated(0.0,-0.03,0.0);
     glScaled(1.0,2.5,1.0);
 
+    glEnable(GL_TEXTURE_2D);
+
+
+    glBindTexture(GL_TEXTURE_2D, bellyTexture);
 
     glBegin(GL_QUADS);
 
-     glVertex3d(zero-0.1, zero -0.02, zero);
-     glVertex3d(zero-0.1, zero -0.08, zero);
-     glVertex3d(coord+0.1,zero -0.08, zero);
-     glVertex3d(coord+0.1,zero -0.02, zero);
+
+    glTexCoord2d(0.0,0.0); glVertex3d(zero-0.1, zero -0.02, zero);
+    glTexCoord2d(0.0,1.0); glVertex3d(zero-0.1, zero -0.08, zero);
+    glTexCoord2d(1.0,1.0); glVertex3d(coord+0.1,zero -0.08, zero);
+    glTexCoord2d(1.0,0.0); glVertex3d(coord+0.1,zero -0.02, zero);
 
     glEnd();
 
@@ -193,6 +199,8 @@ void drawPlayer() {
     glVertex3d(coord+0.1,zero -0.02, zero+0.2);
 
     glEnd();
+
+    glDisable(GL_TEXTURE_2D);
 
 
     glPopMatrix();

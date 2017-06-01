@@ -7,8 +7,8 @@ GLfloat mat_ambient[] = {0.19125, 0.0735, 0.0225, };
 GLfloat mat_difuse[] = {0.8038, 	0.37048, 	0.0828};
 GLfloat mat_specular[] = { 0.256777, 0.137622, 0.086014, };
 GLfloat mat_shininess[] = { 0.1 };
-GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
-GLfloat model_ambient[] = { 0.5, 0.5, 0.5, 1.0 };
+/*GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
+GLfloat model_ambient[] = { 0.5, 0.5, 0.5, 1.0 };*/
 
 
 const float angleWall = 0;
@@ -51,7 +51,7 @@ void drawAStick(void)
 
     glTranslatef(0.0, 0.0, 0.0);
     glPushMatrix();
-    glRotatef(-90.0, 1.0, 0.0, 0.0);
+    glRotatef((GLfloat)-90.0, 1.0, 0.0, 0.0);
     glCallList(startList+1);
     glPopMatrix();
 

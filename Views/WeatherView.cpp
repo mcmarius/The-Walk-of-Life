@@ -6,8 +6,8 @@
 
 
 #define MAX_PARTICLES 100000
-#define WCX		640
-#define WCY		480
+/*#define WCX		640
+#define WCY		480*/
 #define RAIN	0
 #define SNOW	1
 #define	HAIL	2
@@ -15,7 +15,7 @@
 
 float slowdown = 2.0;
 float velocity = 0.0;
-float zoom = -40.0;
+double zoom = -40.0;
 float pan = 0.0;
 float tilt = 0.0;
 float hailsize = 0.1;
@@ -24,30 +24,30 @@ int loop;
 int fall;
 
 //floor colors
-float r = 0.0;
-float g = 1.0;
-float b = 0.0;
-float ground_points[21][21][3];
-float ground_colors[21][21][4];
-float accum = -10.0;
+double r = 0.0;
+double g = 1.0;
+double b = 0.0;
+double ground_points[21][21][3];
+double ground_colors[21][21][4];
+double accum = -10.0;
 
 typedef struct {
     // Life
     bool alive;	// is the particle alive?
-    float life;	// particle lifespan
-    float fade; // decay
+    double life;	// particle lifespan
+    double fade; // decay
     // color
-    float red;
-    float green;
-    float blue;
+    double red;
+    double green;
+    double blue;
     // Position/direction
-    float xpos;
-    float ypos;
-    float zpos;
+    double xpos;
+    double ypos;
+    double zpos;
     // Velocity/Direction, only goes down in y dir
-    float vel;
+    double vel;
     // Gravity
-    float gravity;
+    double gravity;
 }particles;
 
 particles par_sys[MAX_PARTICLES];
@@ -105,9 +105,9 @@ void initWeather(void){
 
 
 void drawRain() {
-    float x, y, z;
+    double x, y, z;
     for (loop = 0; loop < MAX_PARTICLES; loop=loop+2) {
-        if (par_sys[loop].alive == true) {
+        if (par_sys[loop].alive) {
             x = par_sys[loop].xpos;
             y = par_sys[loop].ypos;
             z = par_sys[loop].zpos + zoom;
@@ -116,8 +116,8 @@ void drawRain() {
             //  glColor3f(0.5, 0.5, 1.0);
             glColor3d((double)183/255,(double)211/255,(double)230/255);
             glBegin(GL_LINES);
-            glVertex3f(x, y, z);
-            glVertex3f(x, y+0.5, z);
+            glVertex3d(x, y, z);
+            glVertex3d(x, y+0.5, z);
             glEnd();
 
             // Update values
@@ -143,10 +143,10 @@ void drawRain() {
 
 // For Hail
 void drawHail() {
-    float x, y, z;
+    double x, y, z;
 
     for (loop = 0; loop < MAX_PARTICLES; loop=loop+2) {
-        if (par_sys[loop].alive == true) {
+        if (par_sys[loop].alive) {
             x = par_sys[loop].xpos;
             y = par_sys[loop].ypos;
             z = par_sys[loop].zpos + zoom;
@@ -155,35 +155,35 @@ void drawHail() {
             glColor3f(0.8, 0.8, 0.9);
             glBegin(GL_QUADS);
             // Front
-            glVertex3f(x-hailsize, y-hailsize, z+hailsize); // lower left
-            glVertex3f(x-hailsize, y+hailsize, z+hailsize); // upper left
-            glVertex3f(x+hailsize, y+hailsize, z+hailsize); // upper right
-            glVertex3f(x+hailsize, y-hailsize, z+hailsize); // lower left
+            glVertex3d(x-hailsize, y-hailsize, z+hailsize); // lower left
+            glVertex3d(x-hailsize, y+hailsize, z+hailsize); // upper left
+            glVertex3d(x+hailsize, y+hailsize, z+hailsize); // upper right
+            glVertex3d(x+hailsize, y-hailsize, z+hailsize); // lower left
             //Left
-            glVertex3f(x-hailsize, y-hailsize, z+hailsize);
-            glVertex3f(x-hailsize, y-hailsize, z-hailsize);
-            glVertex3f(x-hailsize, y+hailsize, z-hailsize);
-            glVertex3f(x-hailsize, y+hailsize, z+hailsize);
+            glVertex3d(x-hailsize, y-hailsize, z+hailsize);
+            glVertex3d(x-hailsize, y-hailsize, z-hailsize);
+            glVertex3d(x-hailsize, y+hailsize, z-hailsize);
+            glVertex3d(x-hailsize, y+hailsize, z+hailsize);
             // Back
-            glVertex3f(x-hailsize, y-hailsize, z-hailsize);
-            glVertex3f(x-hailsize, y+hailsize, z-hailsize);
-            glVertex3f(x+hailsize, y+hailsize, z-hailsize);
-            glVertex3f(x+hailsize, y-hailsize, z-hailsize);
+            glVertex3d(x-hailsize, y-hailsize, z-hailsize);
+            glVertex3d(x-hailsize, y+hailsize, z-hailsize);
+            glVertex3d(x+hailsize, y+hailsize, z-hailsize);
+            glVertex3d(x+hailsize, y-hailsize, z-hailsize);
             //Right
-            glVertex3f(x+hailsize, y+hailsize, z+hailsize);
-            glVertex3f(x+hailsize, y+hailsize, z-hailsize);
-            glVertex3f(x+hailsize, y-hailsize, z-hailsize);
-            glVertex3f(x+hailsize, y-hailsize, z+hailsize);
+            glVertex3d(x+hailsize, y+hailsize, z+hailsize);
+            glVertex3d(x+hailsize, y+hailsize, z-hailsize);
+            glVertex3d(x+hailsize, y-hailsize, z-hailsize);
+            glVertex3d(x+hailsize, y-hailsize, z+hailsize);
             //Top
-            glVertex3f(x-hailsize, y+hailsize, z+hailsize);
-            glVertex3f(x-hailsize, y+hailsize, z-hailsize);
-            glVertex3f(x+hailsize, y+hailsize, z-hailsize);
-            glVertex3f(x+hailsize, y+hailsize, z+hailsize);
+            glVertex3d(x-hailsize, y+hailsize, z+hailsize);
+            glVertex3d(x-hailsize, y+hailsize, z-hailsize);
+            glVertex3d(x+hailsize, y+hailsize, z-hailsize);
+            glVertex3d(x+hailsize, y+hailsize, z+hailsize);
             //Bottom
-            glVertex3f(x-hailsize, y-hailsize, z+hailsize);
-            glVertex3f(x-hailsize, y-hailsize, z-hailsize);
-            glVertex3f(x+hailsize, y-hailsize, z-hailsize);
-            glVertex3f(x+hailsize, y-hailsize, z+hailsize);
+            glVertex3d(x-hailsize, y-hailsize, z+hailsize);
+            glVertex3d(x-hailsize, y-hailsize, z-hailsize);
+            glVertex3d(x+hailsize, y-hailsize, z-hailsize);
+            glVertex3d(x+hailsize, y-hailsize, z+hailsize);
             glEnd();
 
             // Update values
@@ -207,9 +207,9 @@ void drawHail() {
 
 // For Snow
 void drawSnow() {
-    float x, y, z;
+    double x, y, z;
     for (loop = 0; loop < MAX_PARTICLES; loop=loop+2) {
-        if (par_sys[loop].alive == true) {
+        if (par_sys[loop].alive) {
             x = par_sys[loop].xpos;
             y = par_sys[loop].ypos;
             z = par_sys[loop].zpos + zoom;
@@ -217,7 +217,7 @@ void drawSnow() {
             // Draw particles
             glColor3f(1.0, 1.0, 1.0);
             glPushMatrix();
-            glTranslatef(x, y, z);
+            glTranslated(x, y, z);
             glutSolidSphere(0.2, 16, 16);
             glPopMatrix();
 
@@ -229,8 +229,8 @@ void drawSnow() {
             par_sys[loop].life -= par_sys[loop].fade;
 
             if (par_sys[loop].ypos <= -10) {
-                int zi = z - zoom + 10;
-                int xi = x + 10;
+                int zi = (int)(z - zoom + 10);
+                int xi = (int)( x + 10);
                 ground_colors[zi][xi][0] = 1.0;
                 ground_colors[zi][xi][2] = 1.0;
                 ground_colors[zi][xi][3] += 1.0;
@@ -251,7 +251,7 @@ void drawSnow() {
 // Draw Particles
 void drawParticles( ) {
     int i, j;
-    float x, y, z;
+    double x, y, z;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -263,26 +263,26 @@ void drawParticles( ) {
     glRotatef(tilt, 1.0, 0.0, 0.0);
 
     // GROUND?!
-    glColor3f(r, g, b);
+    glColor3d(r, g, b);
     glBegin(GL_QUADS);
     // along z - y const
     for (i = -10; i+1 < 11; i++) {
         // along x - y const
         for (j = -10; j+1 < 11; j++) {
-            glColor3fv(ground_colors[i+10][j+10]);
-            glVertex3f(ground_points[j+10][i+10][0],
+            glColor3dv(ground_colors[i+10][j+10]);
+            glVertex3d(ground_points[j+10][i+10][0],
                        ground_points[j+10][i+10][1],
                        ground_points[j+10][i+10][2] + zoom);
-            glColor3fv(ground_colors[i+10][j+1+10]);
-            glVertex3f(ground_points[j+1+10][i+10][0],
+            glColor3dv(ground_colors[i+10][j+1+10]);
+            glVertex3d(ground_points[j+1+10][i+10][0],
                        ground_points[j+1+10][i+10][1],
                        ground_points[j+1+10][i+10][2] + zoom);
-            glColor3fv(ground_colors[i+1+10][j+1+10]);
-            glVertex3f(ground_points[j+1+10][i+1+10][0],
+            glColor3dv(ground_colors[i+1+10][j+1+10]);
+            glVertex3d(ground_points[j+1+10][i+1+10][0],
                        ground_points[j+1+10][i+1+10][1],
                        ground_points[j+1+10][i+1+10][2] + zoom);
-            glColor3fv(ground_colors[i+1+10][j+10]);
-            glVertex3f(ground_points[j+10][i+1+10][0],
+            glColor3dv(ground_colors[i+1+10][j+10]);
+            glVertex3d(ground_points[j+10][i+1+10][0],
                        ground_points[j+10][i+1+10][1],
                        ground_points[j+10][i+1+10][2] + zoom);
         }

@@ -14,11 +14,11 @@ GLfloat ambient_mat_vodka[] = {0.0, 0.1, 0.06, };
 
 GLfloat difuse_mat_beer[] = {0.8038, 	0.37048, 	0.0828};
 GLfloat difuse_mat_wine[] = {0.5, 	0.0, 	0.0};
-GLfloat difuse_mat_vodka[] = {0.0, 	0.50980392, 	0.50980392};
+GLfloat difuse_mat_vodka[] = {0.0, 	(float)0.50980392, 	(float)0.50980392};
 
 GLfloat specular_mat_beer[] = { 0.256777, 0.137622, 0.086014, };
 GLfloat specular_mat_wine[] = { 0.7, 0.6, 0.6, };
-GLfloat specular_mat_vodka[] = { 0.50196078, 0.50196078, 0.50196078 };
+GLfloat specular_mat_vodka[] = { (float)0.50196078, (float)0.50196078, (float)0.50196078 };
 
 GLfloat shininess_mat_beer[] = { 0.1 };
 GLfloat shininess_mat_wine[] = { 25 };

@@ -18,19 +18,19 @@ void drawWineryBar(){
 
     glBegin(GL_QUADS);
     glColor3f(0.0f, 0.7f, 0.7);
-    glVertex2f(1000.0, 5.0);
-    glVertex2f(alcohol_level, 5.0);
-    glVertex2f(alcohol_level, 15.0);
-    glVertex2f(1000.0, 15.0);
+    glVertex2d(1000.0, 5.0);
+    glVertex2d(alcohol_level, 5.0);
+    glVertex2d(alcohol_level, 15.0);
+    glVertex2d(1000.0, 15.0);
     glEnd();
 
 
     glBegin(GL_QUADS);
     glColor3f(1.0f, 0.0f, 0.0);
-    glVertex2f(1000.0, 5.0);
-    glVertex2f(1200.0, 5.0);
-    glVertex2f(1200.0, 15.0);
-    glVertex2f(1000.0, 15.0);
+    glVertex2d(1000.0, 5.0);
+    glVertex2d(1200.0, 5.0);
+    glVertex2d(1200.0, 15.0);
+    glVertex2d(1000.0, 15.0);
     glEnd();
 
 

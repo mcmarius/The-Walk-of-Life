@@ -68,10 +68,10 @@ void drawGround(){
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, _pathTexture);
     glBegin(GL_QUADS);
-    glTexCoord2d(0.0,0.0); glVertex3d(2.5,0.01,-6.0);
-    glTexCoord2d(0.0, 15.0);glVertex3f(2.5,0.01,5.0);
-    glTexCoord2d(1.0, 15.0); glVertex3f(3.5,0.01,5.0);
-    glTexCoord2d(1.0, 0.0); glVertex3f(3.5,0.01,-6.0);
+    glTexCoord2d(0.0,0.0); glVertex3d(2.5,0.01,-4.0);
+    glTexCoord2d(0.0, 15.0);glVertex3f(2.5,0.01,15.0);
+    glTexCoord2d(1.0, 15.0); glVertex3f(3.5,0.01,15.0);
+    glTexCoord2d(1.0, 0.0); glVertex3f(3.5, 0.01, (GLfloat) -4.0);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);

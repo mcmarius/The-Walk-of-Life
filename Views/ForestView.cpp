@@ -44,7 +44,7 @@ void drawATree(){
     glMaterialfv(GL_FRONT, GL_AMBIENT, ambiente);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, difuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, speculare);
-    glMaterialf(GL_FRONT, GL_SHININESS, shininess[0] * 128.0 );
+    glMaterialf(GL_FRONT, GL_SHININESS, (GLfloat) (shininess[0] * 128.0));
 
    // glColor3d(0.0,0.7,0.0);
 
@@ -106,7 +106,7 @@ void drawAFir(){
     glMaterialfv(GL_FRONT, GL_AMBIENT, ambiente);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, difuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, speculare);
-    glMaterialf(GL_FRONT, GL_SHININESS, shininess[0] * 128.0);
+    glMaterialf(GL_FRONT, GL_SHININESS, (GLfloat) (shininess[0] * 128.0));
 
 
     glPushMatrix();

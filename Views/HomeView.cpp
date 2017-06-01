@@ -88,30 +88,30 @@ void drawAHome() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBegin(GL_QUADS);  // Roof
-    glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,2.0,0);
+    glTexCoord3f(0.0,2.0,0); glVertex3f((GLfloat) -2.2, 2.0, 0);
     glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,2.0,0);
     glTexCoord3f(4.0,0.0,1.25); glVertex3f(2.2,1.4,1.25);
-    glTexCoord3f(0.0,0.0,1.25); glVertex3f(-2.2,1.4,1.25);
+    glTexCoord3f(0.0,0.0,1.25); glVertex3f((GLfloat) -2.2, 1.4, 1.25);
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, textureDoor);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBegin(GL_QUADS);  // Door
-    glTexCoord3f(0.0,1.0,1.0001); glVertex3f(-0.3,1.1,1.0001);
+    glTexCoord3f(0.0,1.0,1.0001); glVertex3f((GLfloat) -0.3, 1.1, 1.0001);
     glTexCoord3f(1.0,1.0,1.0001); glVertex3f(0.3,1.1,1.0001);
     glTexCoord3f(1.0,0.0,1.0001); glVertex3f(0.3,0.0,1.0001);
-    glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-0.3,0.0,1.0001);
+    glTexCoord3f(0.0,0.0,1.0001); glVertex3f((GLfloat) -0.3, 0.0, 1.0001);
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, textureWindow);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBegin(GL_QUADS);  // Window Left
-    glTexCoord3f(0.0,1.0,1.0001); glVertex3f(-1.5,1.2,1.0001);
-    glTexCoord3f(1.0,1.0,1.0001); glVertex3f(-0.75,1.2,1.0001);
-    glTexCoord3f(1.0,0.0,1.0001); glVertex3f(-0.75,0.7,1.0001);
-    glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-1.5,0.7,1.0001);
+    glTexCoord3f(0.0,1.0,1.0001); glVertex3f((GLfloat) -1.5, 1.2, 1.0001);
+    glTexCoord3f(1.0,1.0,1.0001); glVertex3f((GLfloat) -0.75, 1.2, 1.0001);
+    glTexCoord3f(1.0,0.0,1.0001); glVertex3f((GLfloat) -0.75, 0.7, 1.0001);
+    glTexCoord3f(0.0,0.0,1.0001); glVertex3f((GLfloat) -1.5, 0.7, 1.0001);
     glEnd();
 
     glBegin(GL_QUADS);  // Window Right
@@ -141,27 +141,27 @@ void drawAHome() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBegin(GL_QUADS);  // Roof
-    glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,2.0,0);
+    glTexCoord3f(0.0,2.0,0); glVertex3f((GLfloat) -2.2, 2.0, 0);
     glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,2.0,0);
-    glTexCoord3f(4.0,0.0,-1.25); glVertex3f(2.2,1.4,-1.25);
-    glTexCoord3f(0.0,0.0,-1.25); glVertex3f(-2.2,1.4,-1.25);
+    glTexCoord3f(4.0, 0.0, (GLfloat) -1.25); glVertex3f(2.2, 1.4, (GLfloat) -1.25);
+    glTexCoord3f(0.0, 0.0, (GLfloat) -1.25); glVertex3f((GLfloat) -2.2, 1.4, (GLfloat) -1.25);
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, textureWindow);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBegin(GL_QUADS);  // Window Left
-    glTexCoord3f(0.0,1.0,-1.0001); glVertex3f(-1.5,1.2,-1.0001);
-    glTexCoord3f(1.0,1.0,-1.0001); glVertex3f(-0.75,1.2,-1.0001);
-    glTexCoord3f(1.0,0.0,-1.0001); glVertex3f(-0.75,0.7,-1.0001);
-    glTexCoord3f(0.0,0.0,-1.0001); glVertex3f(-1.5,0.7,-1.0001);
+    glTexCoord3f(0.0, 1.0, (GLfloat) -1.0001); glVertex3f((GLfloat) -1.5, 1.2, (GLfloat) -1.0001);
+    glTexCoord3f(1.0, 1.0, (GLfloat) -1.0001); glVertex3f((GLfloat) -0.75, 1.2, (GLfloat) -1.0001);
+    glTexCoord3f(1.0, 0.0, (GLfloat) -1.0001); glVertex3f((GLfloat) -0.75, 0.7, (GLfloat) -1.0001);
+    glTexCoord3f(0.0, 0.0, (GLfloat) -1.0001); glVertex3f((GLfloat) -1.5, 0.7, (GLfloat) -1.0001);
     glEnd();
 
     glBegin(GL_QUADS);  // Window Right
-    glTexCoord3f(0.0,1.0,1.0001); glVertex3f(1.5,1.2,-1.0001);
-    glTexCoord3f(1.0,1.0,1.0001); glVertex3f(0.75,1.2,-1.0001);
-    glTexCoord3f(1.0,0.0,1.0001); glVertex3f(0.75,0.7,-1.0001);
-    glTexCoord3f(0.0,0.0,1.0001); glVertex3f(1.5,0.7,-1.0001);
+    glTexCoord3f(0.0,1.0,1.0001); glVertex3f(1.5, 1.2, (GLfloat) -1.0001);
+    glTexCoord3f(1.0,1.0,1.0001); glVertex3f(0.75, 1.2, (GLfloat) -1.0001);
+    glTexCoord3f(1.0,0.0,1.0001); glVertex3f(0.75, 0.7, (GLfloat) -1.0001);
+    glTexCoord3f(0.0,0.0,1.0001); glVertex3f(1.5, 0.7, (GLfloat) -1.0001);
     glEnd();
     glPopMatrix();
 
@@ -182,7 +182,7 @@ void drawAHome() {
     glBegin(GL_TRIANGLES);  // Wall Upper
     glTexCoord3f(0.0,1.0,0); glVertex3f(2,2.0,0);
     glTexCoord3f(1.0,0.0,1); glVertex3f(2,1.5,1);
-    glTexCoord3f(-1.0,0.0,-1); glVertex3f(2,1.5,-1);
+    glTexCoord3f((GLfloat)-1.0,0.0,-1); glVertex3f(2,1.5,-1);
     glEnd();
     glPopMatrix();
 
@@ -203,7 +203,7 @@ void drawAHome() {
     glBegin(GL_TRIANGLES);  // Wall Upper
     glTexCoord3f(0.0,1.0,0);    glVertex3f(-2,2.0,0);
     glTexCoord3f(1.0,0.0,1);    glVertex3f(-2,1.5,1);
-    glTexCoord3f(-1.0,0.0,-1);    glVertex3f(-2,1.5,-1);
+    glTexCoord3f((GLfloat)-1.0,0.0,-1);    glVertex3f(-2,1.5,-1);
     glEnd();
     glPopMatrix();
 
@@ -218,10 +218,10 @@ void drawAHome() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glRotatef(angleHouse, 0.0, 1.0, 0.0);
     glBegin(GL_QUADS);
-    glTexCoord3f(0.0,2.0,1); glVertex3f(5,0.1,-6.25);
-    glTexCoord3f(2.0,2.0,-1); glVertex3f(1,0.1,-6.25);
-    glTexCoord3f(2.0,0.0,-1); glVertex3f(1,0.1,-4.20);
-    glTexCoord3f(0.0,0.0,1);  glVertex3f(5,0.1,-4.20);
+    glTexCoord3f(0.0,2.0,1); glVertex3f(5,0.011,(GLfloat)-6.25);
+    glTexCoord3f(2.0,2.0,-1); glVertex3f(1,0.01,(GLfloat)-6.25);
+    glTexCoord3f(2.0,0.0,-1); glVertex3f(1,0.01,(GLfloat)-4.20);
+    glTexCoord3f(0.0,0.0,1);  glVertex3f(5,0.01,(GLfloat)-4.20);
 
     glEnd();
 
