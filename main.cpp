@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <cmath>
+#include <ctime>
 
 #include "Models/Player.h"
 #include "Views/GroundView.h"
@@ -101,8 +102,8 @@ void initialise() {
         glFogfv (GL_FOG_COLOR, fogColor);
         glFogf (GL_FOG_DENSITY, 0.09);
         glHint (GL_FOG_HINT, GL_DONT_CARE);
-        glFogf (GL_FOG_START, -1000.0);
-        glFogf (GL_FOG_END, 1000.0 );
+        glFogf (GL_FOG_START, 0.0);
+        glFogf (GL_FOG_END, 5.0 );
 
     }
     glClearColor(0.5, 0.5, 0.5, 1.0);  /* fog color */

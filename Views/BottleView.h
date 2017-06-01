@@ -17,7 +17,7 @@ struct bottle{
 
     std::string type;
     double x;
-    const double y = 0.3;
+    double y ;
     double z;
 
 };

@@ -25,13 +25,15 @@ GLfloat shininess_mat_wine[] = { 25 };
 GLfloat shininess_mat_vodka[] = { 25 };
 
 
-
 bottle bottles[MAX_BOTTLES];
+
+
 
 
 void generateBottles(){
 
     for(int i = 0 ; i < MAX_BOTTLES ; i++){
+        bottles[i].y = 0.3;
         bottles[i].x = rand() % 49 + (-29);
         bottles[i].z = rand() % 49 + (-29);
         int value = rand() % 3 + 1;
@@ -52,7 +54,7 @@ void generateBottles(){
     gluQuadricDrawStyle(quadObj, GLU_FILL); /* flat shaded */
     gluQuadricNormals(quadObj, GLU_FLAT);
     glNewList(objList, GL_COMPILE);
-    gluCylinder(quadObj, 0.05, 0.03, 0.03, 15, 5);
+    gluCylinder(quadObj, 0.03, 0.03, 0.06, 15, 5);
     glEndList();
 
 }
@@ -100,9 +102,15 @@ void drawABottle(int i){
     glutSolidCylinder(0.05,0.25,10,10);
     glPopMatrix();
 
-
     glPushMatrix();
     glTranslated(bottles[i].x , bottles[i].y ,bottles[i].z);
+    glutSolidSphere(0.049,10,10);
+    glPopMatrix();
+
+
+
+    glPushMatrix();
+    glTranslated(bottles[i].x , bottles[i].y + 0.04 ,bottles[i].z);
     glRotated(-90.0,1.0,0.0,0.0);
     glCallList(objList);
     glPopMatrix();

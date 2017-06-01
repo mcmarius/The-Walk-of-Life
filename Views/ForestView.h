@@ -6,9 +6,10 @@
 #define THE_WALK_OF_LIFE_FORESTVIEW_H
 
 #include <GL/freeglut.h>
+//#include <GL/glut.h>
 #include <GL/glu.h>
 #include <SOIL/SOIL.h>
-
+//#include <GL/glew.h>
 void drawAFir(void);
 void drawATree(void);
 void initialize_trans_x_y(void);
