@@ -30,11 +30,13 @@ extern GLuint chestTexture;
 static GLint fogMode;
 
 GLfloat ambient [ ] = {0, 0, 0, 1.0};
-double angle, yAngle;
+double angle, yAngle, beta, balanceSpeed = 0.02;
 double lx, ly, lz = -1;
 double x, y = 0.5, z;
 bool ploaie = false;
 bool fog = false;
+bool balanceToRight, balanceEnabled;
+int limit = 1;
 int window;
 int valueMenu,returnMenu;
 
@@ -56,6 +58,7 @@ void draw();
 void menu(int);
 void createMenu();
 
+void computeBalance();
 
 void menu(int n){
     if(n == 0){
@@ -201,8 +204,8 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
 
         }
         break;
-
-
+        case 'b':
+            balanceEnabled = !balanceEnabled;
         default:
             break;
     }
@@ -265,6 +268,11 @@ void draw() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
+    if(balanceEnabled) {
+        computeBalance();
+        glRotated(beta, 0, 0, 1);       // rotate scene according to the alcohol level
+    }
+
     gluLookAt(x, y + 0.25, z,
               x + lx, y + ly + 0.25, z + lz,
               0.0, 0.75, 0.0);
@@ -298,6 +306,19 @@ void draw() {
     glutPostRedisplay();
     glutSwapBuffers();
     glFlush();
+}
+
+void computeBalance() {
+    if(balanceToRight && beta < limit) {
+        beta += balanceSpeed;
+        if(beta >= limit)
+            balanceToRight = false;
+    }
+    else if(! balanceToRight && beta > -limit) {
+        beta -= balanceSpeed;
+        if(beta <= -limit)
+            balanceToRight = true;
+    }
 }
 
 int main(int argc, char **argv) {
