@@ -37,22 +37,22 @@ mai greu și riscă să se lovească de gard. Acest lucru îl va împiedica să 
 
 __Concepte geometrice__
 
-<p> * Personajul principal, personajul, solul, drumul și cerul sunt realizate din obiecte QUADS (de regulă dreptunghiuri) peste care s-au atașat texturi 2D (parțial). </p>
+* Personajul principal, personajul, solul, drumul și cerul sunt realizate din obiecte QUADS (de regulă dreptunghiuri) peste care s-au atașat texturi 2D (parțial).
 
-<p> * Pozițiile copacilor din pădure sunt stabilite prin generarea de coordonate random într-un anumit interval. </p>
+* Pozițiile copacilor din pădure sunt stabilite prin generarea de coordonate random într-un anumit interval.
 
-<p> * Gardul este realizat din obiecte cuadrice pentru care s-a folosit iluminarea necesară pentru a obține efectul de materiale diferite. </p>
+* Gardul este realizat din obiecte cuadrice pentru care s-a folosit iluminarea necesară pentru a obține efectul de materiale diferite.
 
-Sticlele sunt formate din doi cilindri și o sferă, cu aceleași mențiuni referitoare la proprietățile de material.
+* Sticlele sunt formate din doi cilindri și o sferă, cu aceleași mențiuni referitoare la proprietățile de material.
 
-Sticlele și gardul sunt desenate folosind liste de display.
+* Sticlele și gardul sunt desenate folosind liste de display.
 
-<p> * Casa este realizată din obiecte QUADS peste care s-au atașat texturi corespunzătoare (ziduri, ușă, ferestre, acoperiș, parchet).</p>
+* Casa este realizată din obiecte QUADS peste care s-au atașat texturi corespunzătoare (ziduri, ușă, ferestre, acoperiș, parchet).
 
-<p> * Cerul este realizat prin creearea unui cub departe de acțiunea jocului peste care a fost aplicată o textură.</p>
+* Cerul este realizat prin creearea unui cub departe de acțiunea jocului peste care a fost aplicată o textură.
 
-Apa care plutește în aer este formată din suprafețe Bézier suprapuse și semi-transparente.
+* Apa care plutește în aer este formată din suprafețe Bézier suprapuse și semi-transparente.
 
-Prin apăsarea tastei 'f' se activează/dezactivează ceața.
+* Prin apăsarea tastei 'f' se activează/dezactivează ceața.
 
-<p> * Pentru crearea fenomenelor meteorologice s-a folosit un cod existent; sursa o să apară la bibliografie. </p>
+* Pentru crearea fenomenelor meteorologice s-a folosit un cod existent; sursa o să apară la bibliografie.
