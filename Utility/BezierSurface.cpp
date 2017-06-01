@@ -56,20 +56,24 @@ void initBezierGroundSurface() {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imageWidth, imageHeight, 0,
                  GL_RGB, GL_UNSIGNED_BYTE, image);
     glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_SMOOTH);
 }
 void displayBezierGroundSurface(GLdouble x, GLdouble z) {
     glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
     glEnable(GL_TEXTURE_2D);
     glPushMatrix();
     glTranslated(0 + x, -3.1, 6 + z);
     glRotated(90, -1, 0, 0);
 
-    glColor3f(0.0, 1.0, 0.0);
+    glColor4d(0.0, 0.5, 1.0, 0.7);
     glEvalMesh2(GL_FILL, 0, gridN, 0, gridN);
 
     glPopMatrix();
+    glDisable(GL_BLEND);
     glDisable(GL_TEXTURE_2D);
 }
