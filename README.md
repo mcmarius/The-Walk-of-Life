@@ -2,6 +2,15 @@
 
 OpenGL 3D micro-game.
 
+__Echipa__             __Grupa 252__
+
+        * Micluta - Campeanu Marius 
+        * Perescu Antonela-Madalina
+        * Merfu Andrei 
+        
+        
+
+
 __Descriere, scopul jocului (dacă va fi gata)__
 
 <p> Acțiunea se desfășoară într-o pădure de brazi, pe o pajiște din vârf de munte. Nae Cațavencu a ascuns în pădure sticle cu diferite băuturi care să îl tenteze pe Cetățeanul Turmentat
