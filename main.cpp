@@ -18,6 +18,7 @@
 #include "Views/WineryView.h"
 #include "Views/ForestView.h"
 #include "Views/BottleView.h"
+#include "Utility/Shadows.h"
 
 GLint winWidth = 1280, winHeight = 720;
 
@@ -33,7 +34,7 @@ static GLint fogMode;
 GLfloat ambient [ ] = {0, 0, 0, 1.0};
 double angle, yAngle;
 double lx, ly, lz = -1;
-double x, y = 0.5, z;
+double x = 1, y = 0.5, z;
 bool ploaie = false;
 bool fog = false;
 int window;
@@ -112,6 +113,7 @@ void initialise() {
 
     initWeather();
     generateBottles();
+    initShadowMatrices();
 }
 
 void reshape(int w, int h) {
@@ -203,7 +205,18 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
 
         }
         break;
-
+        case 'i':
+            y+=50;
+            break;
+        case ';':
+            z+=50;
+            break;
+        case 'j':
+            z-=50;
+            break;
+        case 'k':
+            y-=50;
+            break;
 
         default:
             break;
@@ -252,16 +265,12 @@ void processSpecialKeys(int key, int /*xx*/, int /*yy*/) {
 
 void draw() {
 
-
     if(y > 0.5 ) {
         y -= 2e-2;
     }
     else if(y <= 0.5) {
         y = 0.5;
     }
-
-
-
 
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -274,11 +283,13 @@ void draw() {
 
     skybox();
     drawGround();
+    glPushMatrix();
+    glPopMatrix();
+    drawAHome();
+    drawPlayer();
+    drawShadows();
 
     drawFence();
-    drawAHome();
-
-    drawPlayer();
     if(ploaie)
         drawRain();
     drawAForest();
@@ -291,8 +302,6 @@ void draw() {
     }else if(!fog){
         glDisable(GL_FOG);
     }
-
-
 
 
     drawWineryBar();
