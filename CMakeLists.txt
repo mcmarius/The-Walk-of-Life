@@ -19,6 +19,7 @@ set(SOURCE_FILES main.cpp
         Views/PlayerView.cpp Views/WallView.cpp Views/ObstacleView.cpp Views/GroundView.cpp
         Views/MiscView.cpp Views/SkyView.cpp Views/HomeView.cpp Views/WineryView.cpp
         Utility/imageloader.cpp  Views/WeatherView.cpp Views/ForestView.cpp GameLogic.cpp
+        Utility/Shadows.cpp 
         Views/BottleView.cpp Models/Polygon.cpp Models/Point.cpp Utility/BezierSurface.cpp)
 add_executable(Proiect2 ${SOURCE_FILES})
 target_link_libraries(Proiect2 soil ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})

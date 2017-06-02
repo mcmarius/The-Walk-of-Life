@@ -18,6 +18,7 @@
 #include "Views/WineryView.h"
 #include "Views/ForestView.h"
 #include "Views/BottleView.h"
+#include "Utility/Shadows.h"
 
 #include "Utility/BezierSurface.h"
 
@@ -38,7 +39,7 @@ double lx, ly, lz = -1;
 double x = 48.744983, y = 0.5, z = 78.729899;
 bool ploaie = false;
 bool fog = false;
-bool balanceToRight, balanceEnabled;
+bool balanceToRight, balanceEnabled, shadowsEnabled;
 int limit = 1;
 int window;
 int valueMenu,returnMenu;
@@ -117,7 +118,7 @@ void initialise() {
 
     initWeather();
     generateBottles();
-
+    initShadowMatrices();
     initBezierGroundSurface();
 }
 
@@ -210,6 +211,21 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
 
         }
         break;
+        case 'i':
+            y+=50;
+            break;
+        case ';':
+            z+=50;
+            break;
+        case 'j':
+            z-=50;
+            break;
+        case 'k':
+            y-=50;
+            break;
+        case 'o':
+            shadowsEnabled = !shadowsEnabled;
+            break;
         case 'b':
             balanceEnabled = !balanceEnabled;
         default:
@@ -259,16 +275,12 @@ void processSpecialKeys(int key, int /*xx*/, int /*yy*/) {
 
 void draw() {
 
-
     if(y > 0.5 ) {
         y -= 2e-2;
     }
     else if(y <= 0.5) {
         y = 0.5;
     }
-
-
-
 
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -286,12 +298,16 @@ void draw() {
 
     skybox();
     drawGround();
-
-    drawFence();
+    glPushMatrix();
+    glPopMatrix();
     drawAHome();
     drawAnotherHome();
 
     drawPlayer();
+    if(shadowsEnabled)
+        drawShadows();
+
+    drawFence();
     if(ploaie)
         drawRain();
     drawAForest();
