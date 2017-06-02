@@ -4,6 +4,10 @@ extern double x, y, z;
 extern double lx, ly, lz;
 extern double angle;
 
+extern double playerX = x + lx;
+extern double playerY;
+extern double playerZ = z + lz;
+
 
 //bool loadedPlayerTexture = false;
 GLuint faceTexture, rightSideTexture, leftSideTexture;
@@ -39,6 +43,8 @@ void drawPlayer() {
     glPushMatrix();
     glTranslated(x + lx, fmax(y - 0.1, 0.5), z + lz);
     glRotated(angle, 0, 1, 0);
+    glRotatef(30.0, 0.0, 1.0, 0.0);
+
     //glColor3d(0.5, 0.5, 1);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, faceTexture);

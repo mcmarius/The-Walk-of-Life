@@ -19,6 +19,7 @@ struct bottle{
     double x;
     double y ;
     double z;
+    bool isVisible;
 
 };
 

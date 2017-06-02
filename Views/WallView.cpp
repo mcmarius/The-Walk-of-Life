@@ -12,6 +12,10 @@ GLfloat model_ambient[] = { 0.5, 0.5, 0.5, 1.0 };*/
 
 
 const float angleWall = 0;
+const float angleRoad = 120;
+
+const double numberOfStick = -92.8;
+
 
 
 void loadStickMaterial();
@@ -171,7 +175,39 @@ void drawFence(void) {
 
     glPopMatrix();
 
+    glPushMatrix();
+
+    for(double x = 1.4 ; x >= numberOfStick; x-=0.2){
+        glPushMatrix();
+        glRotated(angleRoad,0.0,1.0,0.0);
+        glTranslated(x,0.0,2.3);
+        glScaled(0.7,0.5,0.7);
+        drawAStick();
+        glPopMatrix();
+    }
+
     glPopMatrix();
+
+
+    glPushMatrix();
+
+    for(double x = 1.4 ; x >= numberOfStick ; x-=0.2){
+        glPushMatrix();
+        glRotated(angleRoad,0.0,1.0,0.0);
+        glTranslated(x,0.0,3.7);
+        glScaled(0.7,0.5,0.7);
+        drawAStick();
+        glPopMatrix();
+    }
+
+    glPopMatrix();
+
+    glPopMatrix();
+
+
+
+
+
 
 
 }

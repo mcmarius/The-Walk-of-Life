@@ -2,10 +2,19 @@
 // Created by andreimerfu on 28.05.2017.
 //
 
+#include <iostream>
 #include "BottleView.h"
 
 GLUquadricObj *quadObj;
 GLuint objList;
+
+extern double playerX;
+extern double playerZ;
+extern double alcohol_level;
+
+const double epsilon = 0.2;
+
+bool val = true;
 
 
 GLfloat ambient_mat_beer[] = {0.19125, 0.0735, 0.0225, };
@@ -33,9 +42,10 @@ bottle bottles[MAX_BOTTLES];
 void generateBottles(){
 
     for(int i = 0 ; i < MAX_BOTTLES ; i++){
-        bottles[i].y = 0.3;
+        bottles[i].y= 0.3;
         bottles[i].x = rand() % 49 + (-29);
         bottles[i].z = rand() % 49 + (-29);
+        bottles[i].isVisible = true;
         int value = rand() % 3 + 1;
 
         if(value == 1)
@@ -124,6 +134,23 @@ void drawABottle(int i){
 void drawBottles(){
 
     for(int i = 0 ; i < MAX_BOTTLES ; ++i){
-        drawABottle(i);
+        if(val){
+            std::cout << bottles[i].x << ' ' << bottles[i].z <<std::endl;
+            val = false;
+        }
+        if((playerX >= bottles[i].x - epsilon && playerX <= bottles[i].x + epsilon ) && (
+                playerZ >= bottles[i].z - epsilon && playerZ <= bottles[i].z + epsilon)){
+             //Conditia ca playerul sa bea bautura*//**//*
+            if(bottles[i].type == "BEER" && bottles[i].isVisible)
+                alcohol_level += 100.0;
+            else if(bottles[i].type == "WINE" && bottles[i].isVisible)
+                alcohol_level += 250.0;
+            else if(bottles[i].type == "VODKA" && bottles[i].isVisible)
+                alcohol_level += 450.0;
+            bottles[i].isVisible = false;
+
+        }
+        if(bottles[i].isVisible)
+            drawABottle(i);
     }
 }

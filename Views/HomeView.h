@@ -10,7 +10,9 @@
 
 
 
+
     void drawAHome(void);
+    void drawAnotherHome(void);
     void loadTextureOfHouse(void);
     GLuint loadTexture(Image*);
     void write(const char*);
