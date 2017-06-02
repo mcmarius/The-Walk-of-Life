@@ -18,6 +18,9 @@
 #include "Views/WineryView.h"
 #include "Views/ForestView.h"
 #include "Views/BottleView.h"
+#include "Utility/Shadows.h"
+
+#include "Utility/BezierSurface.h"
 
 GLint winWidth = 1280, winHeight = 720;
 
@@ -31,11 +34,13 @@ extern GLuint bellyTexture;
 static GLint fogMode;
 
 GLfloat ambient [ ] = {0, 0, 0, 1.0};
-double angle, yAngle;
+double angle, yAngle, beta, balanceSpeed = 0.02;
 double lx, ly, lz = -1;
 double x = 48.744983, y = 0.5, z = 78.729899;
 bool ploaie = false;
 bool fog = false;
+bool balanceToRight, balanceEnabled, shadowsEnabled;
+int limit = 1;
 int window;
 int valueMenu,returnMenu;
 
@@ -57,6 +62,7 @@ void draw();
 void menu(int);
 void createMenu();
 
+void computeBalance();
 
 void menu(int n){
     if(n == 0){
@@ -112,6 +118,8 @@ void initialise() {
 
     initWeather();
     generateBottles();
+    initShadowMatrices();
+    initBezierGroundSurface();
 }
 
 void reshape(int w, int h) {
@@ -203,8 +211,23 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
 
         }
         break;
-
-
+        case 'i':
+            y+=50;
+            break;
+        case ';':
+            z+=50;
+            break;
+        case 'j':
+            z-=50;
+            break;
+        case 'k':
+            y-=50;
+            break;
+        case 'o':
+            shadowsEnabled = !shadowsEnabled;
+            break;
+        case 'b':
+            balanceEnabled = !balanceEnabled;
         default:
             break;
     }
@@ -252,7 +275,6 @@ void processSpecialKeys(int key, int /*xx*/, int /*yy*/) {
 
 void draw() {
 
-
     if(y > 0.5 ) {
         y -= 2e-2;
     }
@@ -260,12 +282,14 @@ void draw() {
         y = 0.5;
     }
 
-
-
-
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
+
+    if(balanceEnabled) {
+        computeBalance();
+        glRotated(beta, 0, 0, 1);       // rotate scene according to the alcohol level
+    }
 
     gluLookAt(x, y + 0.25, z,
               x + lx, y + ly + 0.25, z + lz,
@@ -274,12 +298,16 @@ void draw() {
 
     skybox();
     drawGround();
-
-    drawFence();
+    glPushMatrix();
+    glPopMatrix();
     drawAHome();
     drawAnotherHome();
 
     drawPlayer();
+    if(shadowsEnabled)
+        drawShadows();
+
+    drawFence();
     if(ploaie)
         drawRain();
     drawAForest();
@@ -293,14 +321,30 @@ void draw() {
         glDisable(GL_FOG);
     }
 
-
-
+    for(int i = 0; i < 2; ++i) {
+        for(int j = 0; j < 3; ++j) {
+            displayBezierGroundSurface(3 * i, 2 * j);
+        }
+    }
 
     drawWineryBar();
 
     glutPostRedisplay();
     glutSwapBuffers();
     glFlush();
+}
+
+void computeBalance() {
+    if(balanceToRight && beta < limit) {
+        beta += balanceSpeed;
+        if(beta >= limit)
+            balanceToRight = false;
+    }
+    else if(! balanceToRight && beta > -limit) {
+        beta -= balanceSpeed;
+        if(beta <= -limit)
+            balanceToRight = true;
+    }
 }
 
 int main(int argc, char **argv) {

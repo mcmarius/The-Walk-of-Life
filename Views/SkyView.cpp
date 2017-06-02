@@ -12,8 +12,8 @@ void loadSkyTexture(void) {
     glBindTexture(GL_TEXTURE_2D, _skyTexture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width2, height2, 0, GL_RGB, GL_UNSIGNED_BYTE, image2);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);  // Set texture1 wrapping to GL_REPEAT
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);  // Set texture1 wrapping to GL_REPEAT
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -41,17 +41,17 @@ void skybox(void) {
 
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, _skyTexture);
-    glBegin(GL_QUADS);        					//FRONT
-    glVertex3f(-size,  size, size); glTexCoord2d(0, 1);
-    glVertex3f( size,  size, size); glTexCoord2d(1, 1);
-    glVertex3f( size, -size, size); glTexCoord2d(1, 0);
+    glBegin(GL_QUADS);        					//BACK
+    glVertex3f(-size,  size, size); glTexCoord2d(0, 2);
+    glVertex3f( size,  size, size); glTexCoord2d(2, 2);
+    glVertex3f( size, -size, size); glTexCoord2d(2, 0);
     glVertex3f(-size, -size, size); glTexCoord2d(0, 0);
     glEnd();
 
 
     glBindTexture(GL_TEXTURE_2D, _skyTexture);
 
-    glBegin(GL_QUADS);        					//BACK
+    glBegin(GL_QUADS);        					//FRONT
     glVertex3f(-size,  size, -size); glTexCoord2d(0, 1);
     glVertex3f( size,  size, -size); glTexCoord2d(1, 1);
     glVertex3f( size, -size, -size); glTexCoord2d(1, 0);
@@ -66,7 +66,7 @@ void skybox(void) {
     glVertex3f( size,  size, -size); glTexCoord2d(1, 0);
     glVertex3f( size,  size,  size); glTexCoord2d(0, 0);
     glEnd();
-
+/*
     glBindTexture(GL_TEXTURE_2D, _skyTexture);
 
     glBegin(GL_QUADS);        					//BOTTOM
@@ -74,7 +74,7 @@ void skybox(void) {
     glVertex3f( size, -size,  size); glTexCoord2d(1, 1);
     glVertex3f( size, -size, -size); glTexCoord2d(1, 0);
     glVertex3f(-size, -size, -size); glTexCoord2d(0, 0);
-    glEnd();
+    glEnd();*/
 
     glEnable(GL_TEXTURE_2D);
 
