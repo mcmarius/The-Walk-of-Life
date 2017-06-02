@@ -1,3 +1,13 @@
+/**
+    The Walk of Life - OpenGL 3D Project
+        * Micluta - Campeanu Marius
+        * Perescu Antonela-Madalina
+        * Merfu Andrei
+        * Grupa 252
+
+ */
+
+
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <cmath>
