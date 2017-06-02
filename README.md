@@ -64,4 +64,27 @@ __Concepte geometrice__
 
 * Prin apăsarea tastei 'f' se activează/dezactivează ceața.
 
-* Pentru crearea fenomenelor meteorologice s-a folosit un cod existent; sursa o să apară la bibliografie.
+* Pentru crearea fenomenelor meteorologice s-a folosit un cod existent; sursa o să apară la bibliografie. Se activeaza de pe tasta 'p'
+
+* Pentru a activa efectul de balansare a cetateanului turmentat, este necesara apasarea tastei 'b'.
+
+* Pentru a cresterea alcoolemiei se poate utiliza tasta 'l' (Inca nu este functionala cresterea automata a alcoolemiei)
+
+* Pentru evidentierea umbrelor am incercat sa proiectam umbra casei pe sol (tasta o ) dar au aparut probleme
+ referitoare la ordinea in care sunt desenate obiectele si umbrele pentru ca interfereaza cu biblioteca SOIL; alte probleme erau cauzate din cauza ca existau mai multe surse de lumina. Am incercat si utilizarea unei alte biblioteci dar lipsea documentatia si era greu de adaptat.
+ 
+ * Cetateanul turmentat nu poate intra in casa decat pe usa , atat zidurile casei cat si gardul este un obstacol pentru acesta si nu poate trece prin ele.
+
+
+__Imagini: __
+
+![start_point](http://i.imgur.com/Ti2zAt2.jpg)
+![house_image](http://i.imgur.com/iU4IFMq.jpg)
+![bezier_image](http://i.imgur.com/5JTiWTK.jpg)
+![bottle_image](http://i.imgur.com/d7wlwTx.jpg)
+
+
+__Bibliografie__
+
+<p> Sursa fenomene meteorologice : 
+              https://classes.soe.ucsc.edu/cmps161/Winter09/projects/mang/particles.cc </p>
