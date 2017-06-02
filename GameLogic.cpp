@@ -82,6 +82,8 @@ void initHomeCollisions() {
                                Point(1.280380, -7.991794));
     addPolygon(houseRightWall);
 
+
+
     /*if(lockedHouse) {
         houseDoor.addVertices(Point(0.100000, -4.900000),
                               Point(0.100000, -5.200000),
@@ -93,7 +95,7 @@ void initHomeCollisions() {
 
 void initHomeFenceCollisions() {
     Polygon /*houseFrontFenceLeft(4), houseFrontFenceRight(4),*/
-            houseLeftFence(4), houseRightFence(4), houseBackFence(4);
+            houseLeftFence(4), houseRightFence(4), houseBackFence(4),road1(4),road2(4),road3(4);
 
     /*houseFrontFenceLeft.addVertices(Point(-2.085163, -2.827030),
                                Point(-4.585800, -6.983974),
@@ -124,4 +126,22 @@ void initHomeFenceCollisions() {
                                Point(3.770231, -5.991377),
                                Point(3.357564, -5.709056));
     addPolygon(houseRightFence);
+
+    road1.addVertices(Point(1.089393,-2.396882),
+                    Point(1.267401,-2.547754),
+                    Point(48.291836,78.982340),
+                    Point(48.056887,78.993308));
+    addPolygon(road1);
+
+    road2.addVertices(Point(2.304480,-3.118159),
+                      Point(2.457216,-3.173652),
+                      Point(49.585241,78.222507),
+                      Point(49.303429,78.325376));
+    addPolygon(road2);
+
+    road3.addVertices(Point(48.407444,79.376009),
+                      Point(48.251677,79.007585),
+                      Point(49.502220,78.370293),
+                      Point(49.612350,78.679584));
+    addPolygon(road3);
 }

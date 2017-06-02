@@ -3,6 +3,9 @@
 GLuint _grassTexture;
 GLuint _pathTexture;
 
+const double repeatNumber = 60.0;
+
+
 void loadGrassTexture(void) {
         GLsizei width2 = 0, height2 = 0;
 
@@ -38,6 +41,7 @@ void loadPathTexture(void) {
 }
 
 void drawGround(){
+
    // glColor3d(1, 1, 0);
 
     // Draw ground and grass
@@ -69,8 +73,8 @@ void drawGround(){
     glBindTexture(GL_TEXTURE_2D, _pathTexture);
     glBegin(GL_QUADS);
     glTexCoord2d(0.0,0.0); glVertex3d(2.5,0.01,-4.0);
-    glTexCoord2d(0.0, 15.0);glVertex3f(2.5,0.01,15.0);
-    glTexCoord2d(1.0, 15.0); glVertex3f(3.5,0.01,15.0);
+    glTexCoord2d(0.0, repeatNumber);glVertex3f(2.5, 0.01, 96.0);
+    glTexCoord2d(1.0, repeatNumber); glVertex3f(3.5,0.01,96.0);
     glTexCoord2d(1.0, 0.0); glVertex3f(3.5, 0.01, (GLfloat) -4.0);
     glEnd();
 

@@ -33,7 +33,7 @@ static GLint fogMode;
 GLfloat ambient [ ] = {0, 0, 0, 1.0};
 double angle, yAngle;
 double lx, ly, lz = -1;
-double x, y = 0.5, z;
+double x = 48.744983, y = 0.5, z = 78.729899;
 bool ploaie = false;
 bool fog = false;
 int window;
@@ -277,6 +277,7 @@ void draw() {
 
     drawFence();
     drawAHome();
+    drawAnotherHome();
 
     drawPlayer();
     if(ploaie)

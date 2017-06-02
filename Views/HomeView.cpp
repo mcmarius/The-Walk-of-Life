@@ -1,7 +1,12 @@
+#include <sstream>
 #include "HomeView.h"
 
 GLuint textureBrick, textureDoor, textureRoof, textureWindow,textureFloor;
 const float angleHouse = 30;
+
+extern double playerX;
+extern double playerZ;
+
 
 
 
@@ -61,9 +66,10 @@ void drawAHome() {
 
 
 
-/*    glColor3d(1.0,1.0,1.0);
+/*
+   glColor3d(1.0,1.0,1.0);
     glRasterPos3f(1,2.0,-4.0);
-    write ("Nu e bine domnule student !");*/
+    write ("Chestie");*/
 
 
 
@@ -230,5 +236,15 @@ void drawAHome() {
 
     glDisable(GL_TEXTURE_2D);
 
+}
+
+
+void drawAnotherHome(void){
+
+    glPushMatrix();
+    glTranslated(55.0,0.0,80.0);
+    glRotated(angleHouse*6,0.0,1.0,0.0);
+    drawAHome();
+    glPopMatrix();
 }
 
