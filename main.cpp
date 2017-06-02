@@ -19,6 +19,8 @@
 #include "Views/ForestView.h"
 #include "Views/BottleView.h"
 
+#include "Utility/BezierSurface.h"
+
 GLint winWidth = 1280, winHeight = 720;
 
 extern GLuint faceTexture;
@@ -112,6 +114,8 @@ void initialise() {
 
     initWeather();
     generateBottles();
+
+    initBezierGroundSurface();
 }
 
 void reshape(int w, int h) {
@@ -293,8 +297,11 @@ void draw() {
         glDisable(GL_FOG);
     }
 
-
-
+    for(int i = 0; i < 2; ++i) {
+        for(int j = 0; j < 3; ++j) {
+            displayBezierGroundSurface(3 * i, 2 * j);
+        }
+    }
 
     drawWineryBar();
 
