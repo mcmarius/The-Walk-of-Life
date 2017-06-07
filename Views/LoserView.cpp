@@ -2,14 +2,15 @@
 // Created by andre on 6/7/2017.
 //
 
+#include "WineryView.h"
 #include "LoserView.h"
-#include "BottleView.h"
 
 double zeta = 0;
-extern double x, lx, y, ly, z, lz;
+extern double x, lx, y, ly, z, lz, balanceSpeed;
 extern GLfloat ambient_mat_wine[], difuse_mat_wine[], specular_mat_wine[], shininess_mat_wine[];
 extern GLuint objList;
 extern bool ploaie, fog, balanceEnabled, balanceToRight, shadowsEnabled;
+extern double alcohol_level;
 
 void drawOneBottle();
 
@@ -17,6 +18,7 @@ void drawLoserView() {
     zeta += 2;
     x = y = z = 0;
     lx = ly = lz = 0;
+    balanceSpeed = 0.02;
     //playerX = playerY = playerZ = -2000;
     glutSpecialFunc(NULL);
     glutKeyboardFunc(loserKeyboard);
@@ -37,6 +39,7 @@ void drawLoserView() {
 
 //    glTranslated(0, -1, 0);
     drawWineryBar();
+    printTextMessage();
 
     glutPostRedisplay();
     glutSwapBuffers();
@@ -96,3 +99,38 @@ void loserKeyboard(unsigned char key, int, int) {
     }
 
 }
+
+void glPrint(double *p, std::string sir, int lungime) {
+    glColor3f(0, 0, 0);
+    int i;
+    for(i = 0; i<lungime; i++) {
+        glRasterPos3d(p[0] + 15 * i, 0, 0);
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, sir[i]);
+    }
+}
+
+void printTextMessage() {
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    glOrtho(0.0, 1280, 720, 0.0, -1.0, 10.0);
+    glMatrixMode(GL_MODELVIEW);
+
+    glLoadIdentity();
+    glDisable(GL_CULL_FACE);
+
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    double pos[] = {5, 1, -1};
+    glPushMatrix();
+    glTranslated(0, 100, 0);
+    glPrint(pos, "Din pacate, cetateanul s-a imbatat si nu si-a putut indeplini misiunea!", 71);
+    glPopMatrix();
+    //glRectd(-1, 1, 20, 20);
+
+// Making sure we can render 3d again
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+}
+
