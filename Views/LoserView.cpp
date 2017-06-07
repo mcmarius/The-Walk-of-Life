@@ -9,6 +9,7 @@ double zeta = 0;
 extern double x, lx, y, ly, z, lz;
 extern GLfloat ambient_mat_wine[], difuse_mat_wine[], specular_mat_wine[], shininess_mat_wine[];
 extern GLuint objList;
+extern bool ploaie, fog, balanceEnabled, balanceToRight, shadowsEnabled;
 
 void drawOneBottle();
 
@@ -18,7 +19,7 @@ void drawLoserView() {
     lx = ly = lz = 0;
     //playerX = playerY = playerZ = -2000;
     glutSpecialFunc(NULL);
-    glutKeyboardFunc(NULL);
+    glutKeyboardFunc(loserKeyboard);
 
     glClearColor(1, 1, 1, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -72,4 +73,26 @@ void drawOneBottle() {
 
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHTING);
+}
+
+void loserKeyboard(unsigned char key, int, int) {
+    switch(key) {
+        case 27:
+            exit(0);
+        case 'r':
+            glutDisplayFunc(draw);
+            glutIdleFunc(draw);
+            glutKeyboardFunc(processNormalKeys);
+            glutSpecialFunc(processSpecialKeys);
+            x = 48.744983, y = 0.5, z = 78.729899;
+            lx = ly = 0;
+            lz = -1;
+            ploaie = fog = balanceEnabled = balanceToRight = shadowsEnabled = false;
+            alcohol_level = 1000;
+
+            break;
+        default:
+            break;
+    }
+
 }

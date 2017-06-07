@@ -7,13 +7,10 @@
 
 //#include <GL/freeglut.h>
 
-#include "WineryView.h"
+#include "../main.h"
 
 void drawLoserView();
-
-class LoserView {
-
-};
+void loserKeyboard(unsigned char key, int, int);
 
 
 #endif //THE_WALK_OF_LIFE_LOSERVIEW_H

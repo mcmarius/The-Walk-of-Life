@@ -7,6 +7,7 @@
 
  */
 
+#include "main.h"
 
 #include <GL/glew.h>
 #include <GL/freeglut.h>
@@ -43,7 +44,7 @@ extern GLuint bellyTexture;
 
 static GLint fogMode;
 
-GLfloat ambient [ ] = {0, 0, 0, 1.0};
+//GLfloat ambient [ ] = {0, 0, 0, 1.0};
 double angle, yAngle, beta, balanceSpeed = 0.02;
 double lx, ly, lz = -1;
 double x = 48.744983, y = 0.5, z = 78.729899;
@@ -64,16 +65,6 @@ std::list<struct Polygon> polygonList(0);
 
 bool initialisedCollisions;
 
-void initialise();
-void reshape(int width, int height);
-void processNormalKeys(unsigned char key, int, int);
-void processSpecialKeys(int key, int, int);
-void draw();
-
-void menu(int);
-void createMenu();
-
-void computeBalance();
 
 void menu(int n){
     if(n == 0){
@@ -95,7 +86,7 @@ void createMenu(){
 
 void initialise() {
 
-    srand(time(NULL));
+    srand((unsigned int) time(NULL));
 
     initialize_trans_x_y();
 
