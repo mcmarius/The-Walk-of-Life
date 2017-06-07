@@ -1,6 +1,3 @@
-#include <cstdio>
-#include <iostream>
-#include <cstdlib>
 #include "GameLogic.h"
 
 void initHomeCollisions();
@@ -12,8 +9,8 @@ bool anyCollisions(double x, double y) {
         initialisedCollisions = true;
     }
     Point point(x, y);
-    Polygon p;
-    std::list<Polygon> secondList(polygonList);
+    struct Polygon p;
+    std::list<struct Polygon> secondList(polygonList);
     if(!secondList.empty()) {
         while(!secondList.empty()) {
             p = secondList.back();
@@ -27,7 +24,9 @@ bool anyCollisions(double x, double y) {
                           turn(p[3], p[4], point) > 0;
             if(inside) {
                 std::cout<<"Din pacate cetateanul s-a imbatat si nu si-a putut indeplini misiunea!"<<std::endl;
-                exit(0);
+                glutDisplayFunc(drawLoserView);
+                glutIdleFunc(drawLoserView);
+                //exit(0);
                 return true;
             }
             secondList.pop_back();
@@ -41,7 +40,7 @@ void initCollisions() {
     initHomeFenceCollisions();
 }
 
-void addPolygon(Polygon &p) {
+void addPolygon(struct Polygon &p) {
     polygonList.push_back(p);
 }
 
@@ -54,7 +53,7 @@ double turn(double x1, double y1, double x2, double y2, double x3, double y3) { 
 }
 
 void initHomeCollisions() {
-    Polygon houseFrontWallLeft(4), houseFrontWallRight(4),
+    struct Polygon houseFrontWallLeft(4), houseFrontWallRight(4),
             houseLeftWall(4), houseRightWall(4), houseBackWall(4);//, houseDoor(4);
 
     houseFrontWallLeft.addVertices(Point(0.256017, -5.0156843),
@@ -99,7 +98,7 @@ void initHomeCollisions() {
 }
 
 void initHomeFenceCollisions() {
-    Polygon /*houseFrontFenceLeft(4), houseFrontFenceRight(4),*/
+    struct Polygon /*houseFrontFenceLeft(4), houseFrontFenceRight(4),*/
             houseLeftFence(4), houseRightFence(4), houseBackFence(4),road1(4),road2(4),road3(4);
 
     /*houseFrontFenceLeft.addVertices(Point(-2.085163, -2.827030),

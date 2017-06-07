@@ -2,7 +2,14 @@
 #define THE_WALK_OF_LIFE_GAMELOGIC_H
 
 #include "Models/Polygon.h"
+
+#include "Views/LoserView.h"
+#include <GL/freeglut.h>
 #include <list>
+#include <cstdio>
+#include <iostream>
+#include <cstdlib>
+
 
 extern std::list<struct Polygon> polygonList;
 extern bool initialisedCollisions;
