@@ -53,6 +53,7 @@ bool balanceToRight, balanceEnabled, shadowsEnabled;
 int limit = 1;
 int window;
 int valueMenu,returnMenu;
+double argument = 0.1;
 
 double alcohol_level = 1000.0;
 
@@ -329,6 +330,22 @@ void draw() {
     drawAForest();
     drawBottles();
 
+    if(alcohol_level > 1050 && alcohol_level < 1150){
+        limit = 7;
+        balanceSpeed = 0.3;
+        argument = 0.15;
+    }
+    if(alcohol_level > 1150 && alcohol_level < 1250){
+        limit = 10;
+        balanceSpeed = 0.4;
+        argument = 0.17;
+    }
+    if(alcohol_level > 1250){
+        limit = 17;
+        balanceSpeed = 0.5;
+        argument = 0.2;
+    }
+
 
     if(fog){
         glEnable(GL_FOG);
@@ -343,7 +360,7 @@ void draw() {
         }
     }
 
-    drawCollisionBoxes();
+  //  drawCollisionBoxes();
     drawWineryBar();
 
     glutPostRedisplay();
@@ -354,13 +371,19 @@ void draw() {
 void computeBalance() {
     if(balanceToRight && beta < limit) {
         beta += balanceSpeed;
-        if(beta >= limit)
+        if(beta >= limit) {
             balanceToRight = false;
+            x += argument;
+            z -= argument;
+        }
     }
     else if(! balanceToRight && beta > -limit) {
         beta -= balanceSpeed;
-        if(beta <= -limit)
+        if(beta <= -limit) {
             balanceToRight = true;
+            x -= argument;
+            z += argument;
+        }
     }
 }
 
@@ -384,7 +407,7 @@ int main(int argc, char **argv) {
     glutKeyboardFunc(processNormalKeys);
     glutSpecialFunc(processSpecialKeys);
 
-   // glutFullScreen();
+  //  glutFullScreen();
 
     glEnable(GL_DEPTH_TEST);    // OpenGL init
     glutMainLoop();    // enter GLUT event processing cycle

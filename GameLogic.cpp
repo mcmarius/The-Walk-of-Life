@@ -1,4 +1,6 @@
 #include <cstdio>
+#include <iostream>
+#include <cstdlib>
 #include "GameLogic.h"
 
 void initHomeCollisions();
@@ -23,8 +25,11 @@ bool anyCollisions(double x, double y) {
                           turn(p[1], p[2], point) > 0 &&
                           turn(p[2], p[3], point) > 0 &&
                           turn(p[3], p[4], point) > 0;
-            if(inside)
+            if(inside) {
+                std::cout<<"Din pacate cetateanul s-a imbatat si nu si-a putut indeplini misiunea!"<<std::endl;
+                exit(0);
                 return true;
+            }
             secondList.pop_back();
         }
     }
