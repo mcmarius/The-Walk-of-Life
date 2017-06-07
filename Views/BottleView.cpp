@@ -14,7 +14,7 @@ extern double alcohol_level;
 
 const double epsilon = 0.2;
 
-bool val = true;
+//bool val[MAX_BOTTLES];
 
 
 GLfloat ambient_mat_beer[] = {0.19125, 0.0735, 0.0225, };
@@ -134,19 +134,28 @@ void drawABottle(int i){
 void drawBottles(){
 
     for(int i = 0 ; i < MAX_BOTTLES ; ++i){
-        if(val){
+        /*if(!val[i]){
             std::cout << bottles[i].x << ' ' << bottles[i].z <<std::endl;
-            val = false;
-        }
+            val[i] = true;
+        }*/
+        /*glBegin(GL_QUADS);
+        glColor3d(0.5, 0.5, 1);
+        glVertex3d(bottles[i].x - epsilon, 0.1, bottles[i].z - epsilon);
+        glVertex3d(bottles[i].x - epsilon, 0.1, bottles[i].z + epsilon);
+        glColor3d(0.5, 1, 0.5);
+        glVertex3d(bottles[i].x + epsilon, 0.1, bottles[i].z + epsilon);
+        glVertex3d(bottles[i].x + epsilon, 0.1, bottles[i].z - epsilon);
+        glEnd();*/
+        //std::cout << bottles[i].x << ' ' << bottles[i].z << ' ' << playerX << ' ' << playerZ <<std::endl;
         if((playerX >= bottles[i].x - epsilon && playerX <= bottles[i].x + epsilon ) && (
                 playerZ >= bottles[i].z - epsilon && playerZ <= bottles[i].z + epsilon)){
              //Conditia ca playerul sa bea bautura*//**//*
             if(bottles[i].type == "BEER" && bottles[i].isVisible)
-                alcohol_level += 100.0;
+                alcohol_level += 10.0;
             else if(bottles[i].type == "WINE" && bottles[i].isVisible)
-                alcohol_level += 250.0;
+                alcohol_level += 25.0;
             else if(bottles[i].type == "VODKA" && bottles[i].isVisible)
-                alcohol_level += 450.0;
+                alcohol_level += 45.0;
             bottles[i].isVisible = false;
 
         }

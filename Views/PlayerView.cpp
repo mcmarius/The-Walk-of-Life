@@ -4,9 +4,9 @@ extern double x, y, z;
 extern double lx, ly, lz;
 extern double angle;
 
-extern double playerX = x + lx;
-extern double playerY;
-extern double playerZ = z + lz;
+/*extern */double playerX = x + lx;
+/*extern */double playerY;
+/*extern */double playerZ = z + lz;
 
 
 //bool loadedPlayerTexture = false;
@@ -33,6 +33,8 @@ void loadPlayerTexture(const std::string nume, GLuint &id) {
 }
 
 void drawPlayer() {
+    playerX = x + lx;   // trebuie actualizate de fiecare data, nu doar initializate
+    playerZ = z + lz;
     /*if(!loadedPlayerTexture) {
         loadedPlayerTexture = true;
         loadPlayerTexture("Textures/player_texture.png", faceTexture);

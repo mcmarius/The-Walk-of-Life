@@ -225,10 +225,16 @@ void processNormalKeys(unsigned char key, int /*x*/, int /*y*/) {
             y+=50;
             break;
         case ';':
-            z+=50;
+            z+=5;
             break;
         case 'j':
-            z-=50;
+            z-=5;
+            break;
+        case 'y':
+            x+=5;
+            break;
+        case 'h':
+            x-=5;
             break;
         case 'k':
             y-=50;
@@ -337,6 +343,7 @@ void draw() {
         }
     }
 
+    drawCollisionBoxes();
     drawWineryBar();
 
     glutPostRedisplay();

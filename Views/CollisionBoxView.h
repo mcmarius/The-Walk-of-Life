@@ -3,8 +3,10 @@
 
 #include <GL/glew.h>
 #include <cmath>
+#include <list>
 
 extern const double PI;
+extern std::list<struct Polygon> polygonList;
 
 void drawCollisionBoxes();
 
